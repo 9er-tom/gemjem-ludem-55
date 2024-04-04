@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bofomp1yachos"]
+
+[ext_resource type="Script" path="res://scripts/PlayerController.gd" id="1_33cje"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xa7ya"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4u0x"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p7pj1"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_33cje")
+mouse_sensitivity_ver = 0.3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50991, 0)
+mesh = SubResource("BoxMesh_xa7ya")
+surface_material_override/0 = SubResource("StandardMaterial3D_w4u0x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.504207, 0)
+shape = SubResource("BoxShape3D_p7pj1")
+
+[node name="camera_mount2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.439438, 0)
+
+[node name="Camera3D" type="Camera3D" parent="camera_mount2"]
+transform = Transform3D(1, 0, 0, 0, 0.997358, 0.0726469, 0, -0.0726469, 0.997358, 0, 0.96402, 2.64997)

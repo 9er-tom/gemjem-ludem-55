@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://crxti425dqsjo"]
+
+[ext_resource type="Texture2D" uid="uid://br6p4ydon6k60" path="res://assets/textures/floor_tiles_06/floor_tiles_06_diff_4k.png" id="1_imvpx"]
+[ext_resource type="PackedScene" uid="uid://bofomp1yachos" path="res://scenes/player.tscn" id="1_ms4mc"]
+[ext_resource type="Texture2D" uid="uid://c86ji6wkym5qk" path="res://assets/textures/floor_tiles_06/floor_tiles_06_nor_gl_4k.png" id="2_ug4wp"]
+[ext_resource type="Texture2D" uid="uid://b8xxvtu618e8u" path="res://assets/textures/floor_tiles_06/floor_tiles_06_rough_4k.png" id="3_uvnj1"]
+[ext_resource type="PackedScene" uid="uid://cak5voyc1teqx" path="res://scenes/box_object.tscn" id="5_1n7om"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7dxv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57kfc"]
+albedo_texture = ExtResource("1_imvpx")
+roughness_texture = ExtResource("3_uvnj1")
+normal_enabled = true
+normal_texture = ExtResource("2_ug4wp")
+uv1_scale = Vector3(50, 50, 14.515)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dn04y"]
+material = SubResource("StandardMaterial3D_57kfc")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hyhtn"]
+size = Vector3(100, 1, 100)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 5.69784, 0)
+shadow_enabled = true
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="Plane" type="StaticBody3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -46.9828)
+physics_material_override = SubResource("PhysicsMaterial_k7dxv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Plane"]
+mesh = SubResource("PlaneMesh_dn04y")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Plane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_hyhtn")
+
+[node name="Box1" parent="Enviroment" instance=ExtResource("5_1n7om")]
+transform = Transform3D(3.04549, 0, 2.12749, 0, 3.715, 0, -2.12749, 0, 3.04549, -13.7817, 1.81937, -21.6708)
+
+[node name="Box2" parent="Enviroment" instance=ExtResource("5_1n7om")]
+transform = Transform3D(1.30652, 0, -0.974631, 0, 1.63, 0, 0.974631, 0, 1.30652, 9.33484, 0.683898, -18.8998)
+
+[node name="Box3" parent="Enviroment" instance=ExtResource("5_1n7om")]
+transform = Transform3D(0.946655, 0, 0.322249, 0, 1, 0, -0.322249, 0, 0.946655, 7.8237, 0.445698, -16.4108)
+
+[node name="Player" parent="." instance=ExtResource("1_ms4mc")]
+mouse_sensitivity_hor = 0.3
+mouse_sensitivity_ver = 0.15
+jump_force = 10.06
