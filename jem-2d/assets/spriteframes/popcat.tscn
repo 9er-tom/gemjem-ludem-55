@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://m8o0rqk2ru0u"]
+
+[ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="1_cwen0"]
+[ext_resource type="Texture2D" uid="uid://bqmav7q304qvn" path="res://assets/img/popcat/pop_1.png" id="2_nqmml"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jv110"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cwen0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nqmml")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="main" type="Node"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(604, 312)
+scale = Vector2(0.54, 0.54)
+sprite_frames = SubResource("SpriteFrames_jv110")
+autoplay = "default"
+frame_progress = 0.220135
