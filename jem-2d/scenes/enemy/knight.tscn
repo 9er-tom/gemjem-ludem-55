@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxa5p0was128e"]
+[gd_scene load_steps=11 format=3 uid="uid://cxa5p0was128e"]
 
 [ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_7ju85"]
 [ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://scenes/health.tscn" id="3_7maye"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bgvgaephormhj" path="res://scenes/entity_detection_component.tscn" id="6_bqr1m"]
 [ext_resource type="Script" path="res://scripts/components/StatBlockComponent.gd" id="6_isrlf"]
 [ext_resource type="Script" path="res://scripts/components/logics/SimpleTargetingLogic.gd" id="7_vhglf"]
+[ext_resource type="Script" path="res://scripts/components/ElementalAffinityComponent.gd" id="8_1yvgy"]
+[ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="9_5xokw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kejoo"]
 radius = 13.0
@@ -16,6 +18,8 @@ height = 52.0
 scale = Vector2(1.5, 1.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+texture_filter = 1
 sprite_frames = ExtResource("1_7ju85")
 animation = &"walk"
 autoplay = "idle"
@@ -51,3 +55,13 @@ attackRange = 80
 
 [node name="SimpleTargetingLogic" type="Node2D" parent="."]
 script = ExtResource("7_vhglf")
+
+[node name="ElementalAffinityComponent" type="Node2D" parent="."]
+script = ExtResource("8_1yvgy")
+local_element = 1
+
+[node name="ElementIndicator" type="Sprite2D" parent="ElementalAffinityComponent"]
+texture_filter = 1
+position = Vector2(0, 22)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_5xokw")

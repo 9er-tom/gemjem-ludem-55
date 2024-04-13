@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://f3cbh0t6wx14"]
+[gd_scene load_steps=46 format=3 uid="uid://f3cbh0t6wx14"]
 
 [ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://scenes/health.tscn" id="1_pudxd"]
 [ext_resource type="Texture2D" uid="uid://byf3i4f4mufr2" path="res://assets/img/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png" id="2_nbkyj"]
@@ -6,7 +6,10 @@
 [ext_resource type="Script" path="res://scripts/components/AnimationStateComponent.gd" id="4_6k5q1"]
 [ext_resource type="Texture2D" uid="uid://bv3crc1ohca8c" path="res://assets/img/Tiny Swords (Update 010)/Factions/Knights/Troops/Dead/Dead.png" id="4_trxcm"]
 [ext_resource type="Script" path="res://scripts/components/logics/SimpleTargetingLogic.gd" id="7_ftxen"]
+[ext_resource type="Script" path="res://scripts/components/ElementalAffinityComponent.gd" id="8_hvprk"]
 [ext_resource type="Script" path="res://scripts/components/StatBlockComponent.gd" id="8_txv7w"]
+[ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="9_a1g18"]
+[ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="10_bepbq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4n8i"]
 radius = 19.0
@@ -278,6 +281,7 @@ offset_bottom = -80.0
 shape = SubResource("CapsuleShape2D_u4n8i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_xdrnk")
 animation = &"idle"
@@ -299,3 +303,15 @@ script = ExtResource("7_ftxen")
 [node name="StatBlockComponent" type="Node2D" parent="."]
 script = ExtResource("8_txv7w")
 attackRange = 150
+
+[node name="ElementalAffinityComponent" type="Node2D" parent="."]
+script = ExtResource("8_hvprk")
+local_element = 3
+
+[node name="ElementIndicator" type="Sprite2D" parent="ElementalAffinityComponent"]
+position = Vector2(0, 22)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_a1g18")
+
+[node name="KillComponent" type="Node2D" parent="."]
+script = ExtResource("10_bepbq")
