@@ -8,7 +8,7 @@ var speed = 100
 
 func _ready():
 	# Get the Timer node and connect its timeout signal to this script
-	$"../Timer".start()
+	$"../../Timer".start()
 
 func _process(delta):
 	var velocity = Vector2() # The sprite's movement vector

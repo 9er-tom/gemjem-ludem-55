@@ -2,11 +2,20 @@ class_name health
 extends Node
 
 
-# Called when the node enters the scene tree for the first time.
+# Assuming health is directly proportional to sprite size
+var health_per_pixel = 0.1  # Adjust this value as needed
+var health_points = 0
+
 func _ready():
-	pass # Replace with function body.
+	var sprite = get_parent().get_parent().get_parent()
+	
+	# Calculate health based on sprite size
+	health_points = sprite.scale.length() * health_per_pixel
+	print("Calculated health_points: ", health_points)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func damage(damage_points):
+	health_points -= damage_points
+	
+func heal(heal_points):
+	health_points += heal_points

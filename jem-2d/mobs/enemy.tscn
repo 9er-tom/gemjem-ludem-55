@@ -1,38 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5n88yfw6oj4a"]
+[gd_scene load_steps=5 format=3 uid="uid://ddahfodd8bt8i"]
 
-[ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="1_syysa"]
-[ext_resource type="Texture2D" uid="uid://bqmav7q304qvn" path="res://assets/img/popcat/pop_1.png" id="2_cxlqu"]
-[ext_resource type="Script" path="res://scripts/enemy_logic.gd" id="2_rmh6d"]
-[ext_resource type="Script" path="res://scripts/health.gd" id="4_0ie4n"]
+[ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_j6b23"]
+[ext_resource type="Script" path="res://scripts/enemy_logic.gd" id="2_tvwom"]
+[ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://mobs/health.tscn" id="3_pf7ga"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8kcrp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_syysa")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_cxlqu")
-}],
-"loop": true,
-"name": &"pop_placeholder_anim",
-"speed": 5.0
-}]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kejoo"]
+radius = 279.0
+height = 794.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_8kcrp")
-animation = &"pop_placeholder_anim"
-frame_progress = 0.907793
+[node name="enemy_body" type="CharacterBody2D"]
 
-[node name="enemy" type="Node" parent="."]
-script = ExtResource("2_rmh6d")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_j6b23")
 
-[node name="health" type="Node" parent="enemy"]
-script = ExtResource("4_0ie4n")
+[node name="enemy" type="Node" parent="AnimatedSprite2D"]
+script = ExtResource("2_tvwom")
+
+[node name="health" parent="AnimatedSprite2D/enemy" instance=ExtResource("3_pf7ga")]
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 2.0
+wait_time = 1.5
 
-[connection signal="timeout" from="Timer" to="enemy" method="_on_timer_timeout"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_kejoo")
