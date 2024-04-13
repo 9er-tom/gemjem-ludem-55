@@ -15,53 +15,56 @@ var closestTarget: Node2D     = null
 @export var attack_damage: int = 1
 
 
-
 func _ready() -> void:
-	attackRangeGizmo.points[1].x = attackRange
-	sprite.animation_finished.connect(_on_animation_finished)
+    attackRangeGizmo.points[1].x = attackRange
+    sprite.animation_finished.connect(_on_animation_finished)
 
 
 func _process(delta: float) -> void:
-	closestTarget = enemyDetection.scan_for_target()
+    closestTarget = enemyDetection.scan_for_target()
+
+    match animState.currentState:
+        AnimationStateComponent.AnimationState.WALK:
+            sprite.play("walk")
+        AnimationStateComponent.AnimationState.ATTACK:
+            sprite.play("attack")
+        AnimationStateComponent.AnimationState.IDLE:
+            sprite.play("idle")
+        AnimationStateComponent.AnimationState.DEATH:
+            sprite.play("death")
+        AnimationStateComponent.AnimationState.SPAWN:
+            pass
 
 
 func _physics_process(_delta: float) -> void:
+    if animState.currentState == AnimationStateComponent.AnimationState.DEATH:
+        return
 
-	# if target is found
-	if closestTarget != null:
-		(closestTarget.position - body.position).normalized() * movespeed
-		if body.position.distance_to(closestTarget.position) <= attackRange:
-			attack(closestTarget)
-	else:
-		body.velocity = Vector2.RIGHT * movespeed if body.position.x < 750 else Vector2.ZERO
-	body.move_and_slide()
+    # if target is found
+    if closestTarget != null:
+        (closestTarget.position - body.position).normalized() * movespeed
+        if body.position.distance_to(closestTarget.position) <= attackRange:
+            attack(closestTarget)
+    else:
+        body.velocity = Vector2.RIGHT * movespeed if body.position.x < 750 else Vector2.ZERO
+    body.move_and_slide()
 
-	if body.velocity != Vector2.ZERO:
-		animState.currentState = AnimationStateComponent.AnimationState.WALK
-	elif animState.currentState != AnimationStateComponent.AnimationState.ATTACK:
-		animState.currentState = AnimationStateComponent.AnimationState.IDLE
+    if body.velocity != Vector2.ZERO:
+        animState.currentState = AnimationStateComponent.AnimationState.WALK
+    elif animState.currentState != AnimationStateComponent.AnimationState.ATTACK:
+        animState.currentState = AnimationStateComponent.AnimationState.IDLE
 
-	match animState.currentState:
-		AnimationStateComponent.AnimationState.WALK:
-			sprite.play("walk")
-		AnimationStateComponent.AnimationState.ATTACK:
-			sprite.play("attack")
-		AnimationStateComponent.AnimationState.IDLE:
-			sprite.play("idle")
-		AnimationStateComponent.AnimationState.DEATH:
-			pass
-		AnimationStateComponent.AnimationState.SPAWN:
-			pass
-		
+
 func attack(target):
-	body.velocity = Vector2.ZERO
-	animState.currentState = AnimationStateComponent.AnimationState.ATTACK
+    body.velocity = Vector2.ZERO
+    animState.currentState = AnimationStateComponent.AnimationState.ATTACK
+
 
 func _on_animation_finished():
-	if sprite.animation == "attack":
-		# closestTarget could already be dead and removed when attack animation finishes
-		if closestTarget:
-			closestTarget.get_node("HealthComponent").damage(attack_damage)
-		
-	if sprite.animation == "death":
-		body.queue_free()
+    if sprite.animation == "attack":
+        # closestTarget could already be dead and removed when attack animation finishes
+        if closestTarget:
+            closestTarget.get_node("HealthComponent").damage(attack_damage)
+
+    if sprite.animation == "death":
+        body.queue_free()

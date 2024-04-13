@@ -2,7 +2,7 @@
 
 [ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_j6b23"]
 [ext_resource type="Script" path="res://scripts/enemy_logic.gd" id="2_tvwom"]
-[ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://mobs/health.tscn" id="3_pf7ga"]
+[ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://scenes/health.tscn" id="3_721a5"]
 [ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="5_vo827"]
 [ext_resource type="PackedScene" uid="uid://bgvgaephormhj" path="res://scenes/entity_detection_component.tscn" id="6_0s7is"]
 [ext_resource type="Script" path="res://scripts/components/AnimationStateComponent.gd" id="6_hfvhp"]
@@ -35,7 +35,7 @@ visible = false
 points = PackedVector2Array(0, 0, 100, 0)
 default_color = Color(1, 0, 0, 1)
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_pf7ga")]
+[node name="HealthComponent" parent="." instance=ExtResource("3_721a5")]
 offset_left = -320.0
 offset_top = -600.0
 offset_right = -256.0

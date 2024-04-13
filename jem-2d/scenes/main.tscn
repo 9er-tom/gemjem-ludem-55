@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
 [ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
-[ext_resource type="PackedScene" uid="uid://ddahfodd8bt8i" path="res://mobs/enemy.tscn" id="4_ivwcq"]
+[ext_resource type="PackedScene" uid="uid://cxa5p0was128e" path="res://scenes/enemy/knight.tscn" id="4_48i4r"]
 [ext_resource type="Script" path="res://scripts/Deadzone.gd" id="5_e015q"]
 [ext_resource type="Texture2D" uid="uid://bttv7uqufdhfj" path="res://assets/img/env/barrier/Sprite-0003.png" id="6_mw8eh"]
 [ext_resource type="Texture2D" uid="uid://0nqdh074r6o0" path="res://assets/img/env/barrier/Sprite-0002.png" id="7_fagwv"]
@@ -29,7 +29,7 @@ shadow_offset = Vector2(-5, 0)
 friendlySpawnPos = Vector2(100, 100)
 enemySpawnPos = Vector2(1000, 100)
 friendlyEntity = ExtResource("3_p7yfg")
-enemyEntity = ExtResource("4_ivwcq")
+enemyEntity = ExtResource("4_48i4r")
 
 [node name="Deadzone" type="Area2D" parent="."]
 script = ExtResource("5_e015q")

@@ -3,9 +3,10 @@ extends Node2D
 
 @onready var timer: Timer = $"../Timer"
 @onready var enemy_body: CharacterBody2D = get_parent()
-@onready var animated_sprite_2d: AnimatedSprite2D = $"../AnimatedSprite2D"
+@onready var sprite: AnimatedSprite2D = $"../AnimatedSprite2D"
 @onready var entityDetection: EntityDetectionComponent = $"../EntityDetectionComponent"
 @onready var attackRangeGizmo: Line2D = $"../AttackRangeGizmo"
+@onready var animState: AnimationStateComponent = $"../AnimationStateComponent"
 
 
 # Speed at which the sprite will move
@@ -20,12 +21,14 @@ var closest_target: Node2D = null
 func _ready():
 	attackRangeGizmo.points[1].x = attack_range
 	enemy_body.scale.x = enemy_body.scale.x * xdirection
-	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
-	print(animated_sprite_2d)
-	timer.timeout.connect(_on_timer_timeout)
-	timer.start()
+	sprite.animation_finished.connect(_on_animation_finished)
+#	timer.timeout.connect(_on_timer_timeout)
+#	timer.start()
 
 func _physics_process(delta):
+	if animState.currentState == AnimationStateComponent.AnimationState.DEATH:
+		return
+		
 	# Move the character and slide along collisions
 	if closest_target != null:
 		rushtarget(closest_target)
@@ -35,11 +38,28 @@ func _physics_process(delta):
 		rushb()
 	enemy_body.move_and_slide()
 
+	if enemy_body.velocity != Vector2.ZERO:
+		animState.currentState = AnimationStateComponent.AnimationState.WALK
+	elif animState.currentState != AnimationStateComponent.AnimationState.ATTACK:
+		animState.currentState = AnimationStateComponent.AnimationState.IDLE
+
 func _process(delta: float) -> void:
 	closest_target = entityDetection.scan_for_target()
 
+	match animState.currentState:
+		AnimationStateComponent.AnimationState.WALK:
+			sprite.play("walk")
+		AnimationStateComponent.AnimationState.ATTACK:
+			sprite.play("attack")
+		AnimationStateComponent.AnimationState.IDLE:
+			sprite.play("idle")
+		AnimationStateComponent.AnimationState.DEATH:
+			sprite.play("death")
+		AnimationStateComponent.AnimationState.SPAWN:
+			pass
+
 func _on_timer_timeout():
-	animated_sprite_2d.flip_h = !animated_sprite_2d.flip_h # Flip the sprite horizontally
+	sprite.flip_h = !sprite.flip_h # Flip the sprite horizontally
 
 func rushb():
 	input_vector.x = xdirection
@@ -55,15 +75,15 @@ func rushtarget(target):
 	
 func attack():
 	enemy_body.velocity = Vector2.ZERO
-	animated_sprite_2d.play("attack")
-	timer.stop()
+	animState.currentState = animState.AnimationState.ATTACK
+	#timer.stop()
 
 func _on_animation_finished():
-	if animated_sprite_2d.animation == "attack":
+	if sprite.animation == "attack":
 		# closestTarget could already be dead and removed when attack animation finishes
 		if closest_target:
 			closest_target.get_node("HealthComponent").damage(attack_damage)
 		
-	if animated_sprite_2d.animation == "death":
+	if sprite.animation == "death":
 		# kill yourself B)
 		enemy_body.queue_free()

@@ -16,8 +16,7 @@ func _ready() -> void:
 
 
 func scan_for_target() -> Node2D:
-    nearbyEntities = detectionRange.get_overlapping_bodies().filter(func targetsOnly(collider: Node2D): return collider.has_node(detectionTarget))
-    print(nearbyEntities)
+    nearbyEntities = detectionRange.get_overlapping_bodies().filter(func targetsOnly(body: Node2D): return body.has_node(detectionTarget))
     if nearbyEntities.size() != 0:
         closestEntity = nearbyEntities[0]
         for entity in nearbyEntities:

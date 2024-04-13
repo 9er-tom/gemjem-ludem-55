@@ -9,8 +9,6 @@ func _ready():
 	# Calculate health based on sprite size
 	max_value = scale.length() * health_per_inch
 	value = max_value
-	print("Calculated health_points: ", max_value)
-
 
 func damage(damage_points):
 	value -= damage_points
