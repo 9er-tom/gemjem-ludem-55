@@ -1,7 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=5 format=3 uid="uid://m8o0rqk2ru0u"]
 
-[ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
+[ext_resource type="Script" path="res://scripts/pop.gd" id="1_d2xkn"]
+[ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="2_7mnhe"]
+[ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="2_oqfxq"]
+[ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
 
 [node name="main" type="Node"]
 
-[node name="TileMap" parent="." instance=ExtResource("1_t682u")]
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+script = ExtResource("1_d2xkn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+visible = false
+position = Vector2(555, 316)
+scale = Vector2(0.54, 0.54)
+sprite_frames = ExtResource("2_oqfxq")
+autoplay = "default"
+frame = 1
+frame_progress = 0.310148
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(594, 315)
+scale = Vector2(0.531875, 0.531875)
+texture = ExtResource("2_7mnhe")
+
+[node name="Test" type="TextEdit" parent="Node2D"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Drawer" type="Node" parent="."]
+
+[node name="Panel" type="Panel" parent="Drawer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("4_6begs")
