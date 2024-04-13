@@ -12,11 +12,5 @@
 [node name="SpawnManager" parent="." instance=ExtResource("2_ea76x")]
 friendlySpawnPos = Vector2(100, 100)
 enemySpawnPos = Vector2(1000, 100)
-debugEntity = ExtResource("3_p7yfg")
-
-[node name="Gobbo" parent="." instance=ExtResource("3_p7yfg")]
-position = Vector2(43, 140)
-
-[node name="enemy_body" parent="." instance=ExtResource("4_ivwcq")]
-position = Vector2(1035, 182)
-scale = Vector2(0.2, 0.2)
+friendlyEntity = ExtResource("3_p7yfg")
+enemyEntity = ExtResource("4_ivwcq")

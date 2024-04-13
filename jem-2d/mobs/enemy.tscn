@@ -6,14 +6,15 @@
 [ext_resource type="Script" path="res://scripts/components/HealthComponent.gd" id="4_o6vot"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kejoo"]
-radius = 279.0
-height = 794.0
+radius = 215.0
+height = 450.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kx0cf"]
 radius = 777.0
 height = 1554.0
 
 [node name="enemy_body" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_j6b23")
@@ -23,6 +24,7 @@ process_callback = 0
 wait_time = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(55, 240)
 shape = SubResource("CapsuleShape2D_kejoo")
 
 [node name="EntityDetectionComponent" type="Node2D" parent="."]
@@ -37,7 +39,7 @@ shape = SubResource("CapsuleShape2D_kx0cf")
 
 [node name="Enemy" type="Node2D" parent="."]
 script = ExtResource("2_tvwom")
-attack_range = 300
+attack_range = 200
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("4_o6vot")

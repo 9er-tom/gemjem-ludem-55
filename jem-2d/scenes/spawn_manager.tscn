@@ -8,3 +8,5 @@ script = ExtResource("1_bv2gb")
 [node name="Friendlies" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
