@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5n88yfw6oj4a"]
+
+[ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="1_syysa"]
+[ext_resource type="Texture2D" uid="uid://bqmav7q304qvn" path="res://assets/img/popcat/pop_1.png" id="2_cxlqu"]
+[ext_resource type="Script" path="res://scripts/enemy_logic.gd" id="2_rmh6d"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="4_0ie4n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8kcrp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_syysa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cxlqu")
+}],
+"loop": true,
+"name": &"pop_placeholder_anim",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_8kcrp")
+animation = &"pop_placeholder_anim"
+frame_progress = 0.907793
+
+[node name="enemy" type="Node" parent="."]
+script = ExtResource("2_rmh6d")
+
+[node name="health" type="Node" parent="enemy"]
+script = ExtResource("4_0ie4n")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="enemy" method="_on_timer_timeout"]
