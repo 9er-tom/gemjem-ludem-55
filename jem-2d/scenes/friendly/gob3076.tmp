@@ -106,7 +106,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0jpcw")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack",
 "speed": 8.0
 }, {
@@ -163,6 +163,7 @@ animations = [{
 [node name="Gobbo" type="CharacterBody2D"]
 
 [node name="Health" parent="." instance=ExtResource("1_enydv")]
+visible = true
 offset_left = -32.0
 offset_top = -88.0
 offset_right = 32.0

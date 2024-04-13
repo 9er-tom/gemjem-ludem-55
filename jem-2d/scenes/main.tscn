@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://m8o0rqk2ru0u"]
 
-[ext_resource type="PackedScene" uid="uid://cspklb0va15d6" path="res://scenes/tile_map.tscn" id="1_t682u"]
-[ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
+[ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
+[ext_resource type="PackedScene" uid="uid://bkwsdfio5ho7w" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
 [ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
 [ext_resource type="PackedScene" uid="uid://ddahfodd8bt8i" path="res://mobs/enemy.tscn" id="4_ivwcq"]
 

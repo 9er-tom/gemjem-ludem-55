@@ -163,6 +163,7 @@ animations = [{
 [node name="Gobbo" type="CharacterBody2D"]
 
 [node name="Health" parent="." instance=ExtResource("1_enydv")]
+visible = true
 offset_left = -32.0
 offset_top = -88.0
 offset_right = 32.0

@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://wg3uykey4c0u"]
+[gd_scene load_steps=4 format=3 uid="uid://wg3uykey4c0u"]
 
-[ext_resource type="Script" path="res://scripts/health.gd" id="1_oc8xe"]
+[ext_resource type="Texture2D" uid="uid://but7dqx4gnvy2" path="res://assets/img/ben_healthbar/under.png" id="1_sjdjg"]
+[ext_resource type="Texture2D" uid="uid://boh2e10fq4hx7" path="res://assets/img/ben_healthbar/progress.png" id="2_ri211"]
+[ext_resource type="Script" path="res://scripts/components/HealthComponent.gd" id="3_q1847"]
 
-[node name="health" type="Node"]
-script = ExtResource("1_oc8xe")
+[node name="Health" type="TextureProgressBar"]
+visible = false
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+value = 100.0
+texture_under = ExtResource("1_sjdjg")
+texture_progress = ExtResource("2_ri211")
+script = ExtResource("3_q1847")

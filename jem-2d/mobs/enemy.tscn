@@ -3,7 +3,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_j6b23"]
 [ext_resource type="Script" path="res://scripts/components/EntityDetectionComponent.gd" id="2_rhg4o"]
 [ext_resource type="Script" path="res://scripts/enemy_logic.gd" id="2_tvwom"]
-[ext_resource type="Script" path="res://scripts/components/HealthComponent.gd" id="4_o6vot"]
+[ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://mobs/health.tscn" id="3_pf7ga"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kejoo"]
 radius = 279.0
@@ -17,6 +17,7 @@ height = 1554.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_j6b23")
+animation = &"attack"
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
@@ -39,10 +40,14 @@ shape = SubResource("CapsuleShape2D_kx0cf")
 script = ExtResource("2_tvwom")
 attack_range = 300
 
-[node name="HealthComponent" type="Node2D" parent="."]
-script = ExtResource("4_o6vot")
-
 [node name="AttackRangeGizmo" type="Line2D" parent="."]
 visible = false
 points = PackedVector2Array(0, 0, 100, 0)
 default_color = Color(1, 0, 0, 1)
+
+[node name="Health" parent="." instance=ExtResource("3_pf7ga")]
+offset_left = -320.0
+offset_top = -600.0
+offset_right = -256.0
+offset_bottom = -592.0
+scale = Vector2(10, 10)

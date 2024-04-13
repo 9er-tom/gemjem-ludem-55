@@ -13,13 +13,15 @@ extends Node2D
 var xdirection = -1
 var input_vector = Vector2()
 @export var attack_range = 500
+@export var attack_damage = 1
 
 var closest_target: Node2D = null
 
 func _ready():
 	attackRangeGizmo.points[1].x = attack_range
-	
 	enemy_body.scale.x = enemy_body.scale.x * xdirection
+	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
+	print(animated_sprite_2d)
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
 
@@ -28,9 +30,7 @@ func _physics_process(delta):
 	if closest_target != null:
 		rushtarget(closest_target)
 		if enemy_body.position.distance_to(closest_target.position) <= attack_range:
-			enemy_body.velocity = Vector2.ZERO
-			animated_sprite_2d.play("default")
-			timer.stop()
+			attack()
 	else:
 		rushb()
 	enemy_body.move_and_slide()
@@ -52,3 +52,13 @@ func rushtarget(target):
 	enemy_body.velocity = direction * speed
 	# Rotate your character to face the target
 	enemy_body.rotation = atan2(direction.y, direction.x)
+	
+func attack():
+	enemy_body.velocity = Vector2.ZERO
+	animated_sprite_2d.play("attack")
+	timer.stop()
+
+func _on_animation_finished():
+	print(animated_sprite_2d.animation)
+	if animated_sprite_2d.animation == "attack":
+		closest_target.get_node("Health").damage(attack_damage)
