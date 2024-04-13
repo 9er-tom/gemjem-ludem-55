@@ -22,3 +22,7 @@ frame_progress = 0.310148
 position = Vector2(594, 315)
 scale = Vector2(0.531875, 0.531875)
 texture = ExtResource("2_7mnhe")
+
+[node name="Test" type="TextEdit" parent="Node2D"]
+offset_right = 8.0
+offset_bottom = 8.0
