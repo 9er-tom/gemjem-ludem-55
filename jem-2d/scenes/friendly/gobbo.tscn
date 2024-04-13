@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://f3cbh0t6wx14"]
+[gd_scene load_steps=26 format=3 uid="uid://f3cbh0t6wx14"]
 
 [ext_resource type="Script" path="res://scripts/Friendly.gd" id="1_b6tvx"]
 [ext_resource type="Texture2D" uid="uid://byf3i4f4mufr2" path="res://assets/img/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png" id="2_nbkyj"]
+[ext_resource type="Script" path="res://scripts/components/EntityDetectionComponent.gd" id="3_6weck"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4n8i"]
 radius = 22.0
@@ -158,6 +159,10 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4b2us"]
+radius = 129.0
+height = 440.0
+
 [node name="Gobbo" type="CharacterBody2D"]
 
 [node name="Friendly" type="Node2D" parent="."]
@@ -172,3 +177,13 @@ sprite_frames = SubResource("SpriteFrames_xdrnk")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.109674
+
+[node name="EntityDetectionComponent" type="Node2D" parent="."]
+script = ExtResource("3_6weck")
+detectionTarget = "Enemy"
+
+[node name="Area2D" type="Area2D" parent="EntityDetectionComponent"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityDetectionComponent/Area2D"]
+position = Vector2(128, 0)
+shape = SubResource("CapsuleShape2D_4b2us")

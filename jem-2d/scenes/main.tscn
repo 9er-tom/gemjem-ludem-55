@@ -1,8 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=8 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://cspklb0va15d6" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
 [ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
+[ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="4_2psfy"]
+[ext_resource type="Texture2D" uid="uid://bqmav7q304qvn" path="res://assets/img/popcat/pop_1.png" id="5_4io66"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5vjdb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2psfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4io66")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0mi3s"]
+radius = 27.1662
 
 [node name="main" type="Node"]
 
@@ -13,5 +32,18 @@ friendlySpawnPos = Vector2(100, 100)
 enemySpawnPos = Vector2(1000, 100)
 debugEntity = ExtResource("3_p7yfg")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(336, 327)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_5vjdb")
+
+[node name="Enemy" type="Node2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, 24)
+shape = SubResource("CircleShape2D_0mi3s")
+
 [node name="Gobbo" parent="." instance=ExtResource("3_p7yfg")]
-position = Vector2(98, 111)
+position = Vector2(43, 140)
