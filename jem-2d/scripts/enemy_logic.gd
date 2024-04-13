@@ -8,6 +8,7 @@ extends Node
 var speed = 100
 var xdirection = -1
 var input_vector = Vector2()
+var attack_range = 100
 
 var detectionRange : Area2D
 signal closest_target
@@ -24,7 +25,13 @@ func _physics_process(delta):
 	# Apply the movement vector to the velocity
 	
 	# Move the character and slide along collisions
-	enemy_body.move_and_slide()
+	if enemy_body.global_position.distance_to(closest_target.global_position) <= attack_range:
+		# Stop the enemy body's movement
+		enemy_body.velocity = Vector2.ZERO
+		# Play the attack animation
+		enemy_body.play("attack")
+	else:
+		enemy_body.move_and_slide()
 
 
 func _on_timer_timeout():
