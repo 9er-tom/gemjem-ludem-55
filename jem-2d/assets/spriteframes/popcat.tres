@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bqmav7q304qvn" path="res://assets/img/popcat/pop_1.png" id="2_3w7t3"]
 
 [resource]
+resource_name = "attack"
 animations = [{
 "frames": [{
 "duration": 1.0,

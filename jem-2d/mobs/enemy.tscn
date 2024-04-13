@@ -24,3 +24,5 @@ wait_time = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kejoo")
+
+[connection signal="timeout" from="Timer" to="AnimatedSprite2D/enemy" method="_on_timer_timeout"]
