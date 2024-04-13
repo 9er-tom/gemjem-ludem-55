@@ -15,6 +15,8 @@ func _ready():
 func damage(damage_points):
 	value -= damage_points
 	visible = true
+	if value <= 0:
+		$"../KillComponent".kill()
 	
 func heal(heal_points):
 	value += heal_points

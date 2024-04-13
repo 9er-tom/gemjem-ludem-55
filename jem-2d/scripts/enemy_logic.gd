@@ -60,7 +60,10 @@ func attack():
 
 func _on_animation_finished():
 	if animated_sprite_2d.animation == "attack":
-		closest_target.get_node("HealthComponent").damage(attack_damage)
+		# closestTarget could already be dead and removed when attack animation finishes
+		if closest_target:
+			closest_target.get_node("HealthComponent").damage(attack_damage)
 		
 	if animated_sprite_2d.animation == "death":
+		# kill yourself B)
 		enemy_body.queue_free()

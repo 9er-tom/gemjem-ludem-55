@@ -59,7 +59,9 @@ func attack(target):
 
 func _on_animation_finished():
 	if sprite.animation == "attack":
-		closestTarget.get_node("HealthComponent").damage(attack_damage)
+		# closestTarget could already be dead and removed when attack animation finishes
+		if closestTarget:
+			closestTarget.get_node("HealthComponent").damage(attack_damage)
 		
 	if sprite.animation == "death":
 		body.queue_free()
