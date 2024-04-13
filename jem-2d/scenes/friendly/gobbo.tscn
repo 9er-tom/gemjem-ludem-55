@@ -1,12 +1,12 @@
 [gd_scene load_steps=43 format=3 uid="uid://f3cbh0t6wx14"]
 
-[ext_resource type="Script" path="res://scripts/Friendly.gd" id="1_b6tvx"]
 [ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://scenes/health.tscn" id="1_pudxd"]
 [ext_resource type="Texture2D" uid="uid://byf3i4f4mufr2" path="res://assets/img/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png" id="2_nbkyj"]
 [ext_resource type="PackedScene" uid="uid://bgvgaephormhj" path="res://scenes/entity_detection_component.tscn" id="3_xbkqk"]
 [ext_resource type="Script" path="res://scripts/components/AnimationStateComponent.gd" id="4_6k5q1"]
 [ext_resource type="Texture2D" uid="uid://bv3crc1ohca8c" path="res://assets/img/Tiny Swords (Update 010)/Factions/Knights/Troops/Dead/Dead.png" id="4_trxcm"]
-[ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="6_eul0o"]
+[ext_resource type="Script" path="res://scripts/components/logics/SimpleTargetingLogic.gd" id="7_ftxen"]
+[ext_resource type="Script" path="res://scripts/components/StatBlockComponent.gd" id="8_txv7w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4n8i"]
 radius = 19.0
@@ -266,17 +266,13 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Gobbo" type="CharacterBody2D"]
+[node name="Gobbo" type="CharacterBody2D" groups=["Friendly"]]
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_pudxd")]
 offset_left = -32.0
 offset_top = -88.0
 offset_right = 32.0
 offset_bottom = -80.0
-
-[node name="Friendly" type="Node2D" parent="."]
-script = ExtResource("1_b6tvx")
-attackRange = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_u4n8i")
@@ -297,5 +293,9 @@ default_color = Color(1, 0, 0, 1)
 [node name="AnimationStateComponent" type="Node2D" parent="."]
 script = ExtResource("4_6k5q1")
 
-[node name="KillComponent" type="Node2D" parent="."]
-script = ExtResource("6_eul0o")
+[node name="SimpleTargetingLogic" type="Node2D" parent="."]
+script = ExtResource("7_ftxen")
+
+[node name="StatBlockComponent" type="Node2D" parent="."]
+script = ExtResource("8_txv7w")
+attackRange = 150

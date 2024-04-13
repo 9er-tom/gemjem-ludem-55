@@ -14,7 +14,7 @@ func _process(delta):
 	
 func _on_body_entered(entity: Node2D) -> void:
 	print("entered deadzone: ", entity)
-	if not entity.has_node("Enemy"):
+	if not entity.is_in_group("Enemy"):
 		return
 	barrier_damage_taken.emit(entity.get_node("HealthComponent").value)
 	entity.get_node("KillComponent").kill()

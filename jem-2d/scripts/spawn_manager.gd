@@ -27,13 +27,12 @@ func _process(delta: float) -> void:
 
 func spawn_entity(entity: PackedScene, spawnPos = null) -> void:
 	var ent: Node2D = entity.instantiate()
-
-	if ent.has_node("Enemy"):
+	if ent.is_in_group("Enemy"):
 		ent.position = spawnPos if spawnPos else enemySpawnPos
 		$Enemies.add_child(ent)
 		print("enemy")
 
-	elif ent.has_node("Friendly"):
+	elif ent.is_in_group("Friendly"):
 		ent.position = spawnPos if spawnPos else friendlySpawnPos
 		$Friendlies.add_child(ent)
 		print("friendly")
@@ -43,7 +42,7 @@ func spawn_entity(entity: PackedScene, spawnPos = null) -> void:
 		return
 		
 func _on_timeout():
-	var enemySpawnPosY = randi_range(0, get_viewport_rect().size.y)
+	var enemySpawnPosY: int = randi_range(0, get_viewport_rect().size.y)
 	spawn_entity(enemyEntity, Vector2(enemySpawnPosX, enemySpawnPosY))
 	timer.start()
 	
