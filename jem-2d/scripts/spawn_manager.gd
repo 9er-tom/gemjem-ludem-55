@@ -1,7 +1,7 @@
 extends Node2D
 
 signal entity_spawned
-@export var spawnPos: Vector2
+@export var defaultSpawnPos: Vector2
 @export var debugEntity: PackedScene
 
 
@@ -12,7 +12,7 @@ func _ready():
 
 #todo connect signal to _on_spawn_entity
 
-func _on_spawn_entity(entity: PackedScene):
+func _on_spawn_entity(entity: PackedScene, spawnPos: Vector2 = defaultSpawnPos) -> void:
     var ent: Node2D = entity.instantiate()
 
     if ent.has_node("Enemy"):
@@ -26,5 +26,3 @@ func _on_spawn_entity(entity: PackedScene):
         return
 
     ent.global_position = spawnPos
-	
-	
