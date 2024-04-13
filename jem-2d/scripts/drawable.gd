@@ -1,43 +1,44 @@
 extends Node2D
 
-var lines : Array = [[]]
+@onready var imgScorer: ImageScorer = $ImageScorer
+@onready var rect : ColorRect= $ColorRect
+@onready var timerComponent: Timer = $Timer
+@export var lastDrawnSymbol: PackedScene
 
-var prevSymbol : Array = [[]]
-
-#var image : Image
-
-@onready
-var imgScorer: ImageScorer = $ImageScorer
-@onready
-var rect : ColorRect= $ColorRect
 var limitRect: Rect2;
+var lines : Array = [[]]
+var prevSymbols : Array = [[[]]]
+
+var tex = ImageTexture.new()
 
 func _ready():
+	timerComponent.timeout.connect(activateSymbol)
 	limitRect = rect.get_rect()
 
-
 func _draw():
+	for i in range(prevSymbols.size()):
+		for line in prevSymbols[i]:
+			if line.size() == 1:
+				draw_circle(line[0], 2, Color(0,0,0,0.2-i*0.02))
+			if line.size() > 1:
+				draw_polyline(line, Color(0,0,0,0.2-i*0.02), 2, true)
+
 	for line in lines:
 		if line.size() == 1:
 			draw_circle(line[0], 3, Color.RED)
 		if line.size() > 1:
 			draw_polyline(line, Color.RED, 4, true)
-	
-	for line in prevSymbol:
-		if line.size() == 1:
-			draw_circle(line[0], 3, Color.BLACK)
-		if line.size() > 1:
-			draw_polyline(line, Color.BLACK, 4, true)
-
 
 func _process(_delta):
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
-		var mousePosition = get_viewport().get_mouse_position()
+		timerComponent.start()
 
+		var mousePosition = get_viewport().get_mouse_position()
 		if mousePosition.x > limitRect.position.x && mousePosition.x < limitRect.end.x && mousePosition.y > limitRect.position.y && mousePosition.y < limitRect.end.y: 
 
 			if lines[-1].size() == 0 || lines[-1][-1] != mousePosition:
 				lines[-1].append(mousePosition)
+				
 				queue_redraw()
 	
 	else:
@@ -45,33 +46,41 @@ func _process(_delta):
 			lines.append([])
 
 
-	if Input.is_action_just_pressed('ui_select'):
-		save_picture(lines)
-		prevSymbol = lines
-		lines = [[]]
-		queue_redraw()
+func activateSymbol(): 
+	save_picture(lines)
+	prevSymbols.push_front(lines)
+	if prevSymbols.size() > 10:
+		prevSymbols.pop_back()
+	lines = [[]]
+	queue_redraw()
 
 
 func save_picture(lastSymbol):
-	# Wait until the frame has finished before getting the texture.
-	await RenderingServer.frame_post_draw
+	var img = createSymbolImage(lastSymbol, Color.RED)
+	#img.save_png("F:\\Godot Projects\\LD\\gemjem-ludem-55-1\\jem-2d\\scripts\\test.png")
 
-	var img = createSymbolImage(lastSymbol)
-
-	img.save_png("F:\\Godot Projects\\LD\\gemjem-ludem-55-1\\jem-2d\\scripts\\test.png")
+	createEffect(img)
 	imgScorer.scoreImage(img)
 
+func createEffect(img):
+	tex = ImageTexture.create_from_image(img)
+	var newObject = lastDrawnSymbol.instantiate()
+	
+	add_child(newObject)
+	newObject.get_node("TextureRect").texture = tex
+	newObject.position = limitRect.position
 
-func createSymbolImage(lastSymbol):
+
+func createSymbolImage(lastSymbol, color = Color.BLACK):
 	var img = Image.create(limitRect.size.x, limitRect.size.y, false, 5)
 
 	for line in lastSymbol:
 		var prevPoint = null
 		for point in line:
 			if prevPoint:
-				draw_line_on_img(img, prevPoint - limitRect.position, point - limitRect.position, Color.BLACK)
+				draw_line_on_img(img, prevPoint - limitRect.position, point - limitRect.position, color)
 			else:
-				img.set_pixel(point.x - limitRect.position.x, point.y - limitRect.position.y, Color.BLACK)
+				draw_circle_on_img(img, point.x - limitRect.position.x, point.y - limitRect.position.y, 7, color)
 			prevPoint = point
 		
 	return img
@@ -88,7 +97,6 @@ func draw_line_on_img(img, p0, p1, color):
 	var sy = -1 if y0 > y1 else 1
 	var err = dx + dy  # error value e_xy
 	while true:
-		#img.set_pixel(x0, y0, color)  # Function to set the pixel (to be implemented)
 		draw_circle_on_img(img, x0, y0, 7, color)
 		if x0 == x1 and y0 == y1:
 			break
@@ -104,6 +112,7 @@ func draw_circle_on_img(img, x, y, radius, color):
 	for ix in range(x - radius, x + radius + 1):
 		for iy in range(y - radius, y + radius + 1):
 			if (ix - x) * (ix - x) + (iy - y) * (iy - y) <= radius * radius:
-				if ix < 0 || iy < 0 || ix > img.get_width() || iy > img.get_height():
+				if ix < 0 || iy < 0 || ix >= img.get_width() || iy >= img.get_height():
 					continue
+				color.a = ((ix - x) * (ix - x) + (iy - y) * (iy - y))
 				img.set_pixel(ix, iy, color)

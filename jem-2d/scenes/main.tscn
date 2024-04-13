@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=7 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="Script" path="res://scripts/pop.gd" id="1_d2xkn"]
 [ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="2_7mnhe"]
 [ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="2_oqfxq"]
 [ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
+[ext_resource type="PackedScene" uid="uid://ctkgs5hp7riqn" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
 [ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
 
 [node name="main" type="Node"]
@@ -25,6 +26,7 @@ scale = Vector2(0.531875, 0.531875)
 texture = ExtResource("2_7mnhe")
 
 [node name="Test" type="TextEdit" parent="Node2D"]
+visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 
@@ -33,15 +35,20 @@ offset_bottom = 8.0
 [node name="Node2D" type="Node2D" parent="Drawer"]
 z_index = 1
 script = ExtResource("4_6begs")
+lastDrawnSymbol = ExtResource("5_4o41v")
 
 [node name="ImageScorer" type="Node" parent="Drawer/Node2D"]
 script = ExtResource("5_fj68i")
 
 [node name="ColorRect" type="ColorRect" parent="Drawer/Node2D"]
+visible = false
 visibility_layer = 2
 z_index = -1
-offset_top = 336.0
-offset_right = 312.0
-offset_bottom = 648.0
+offset_right = 1150.0
+offset_bottom = 646.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Timer" type="Timer" parent="Drawer/Node2D"]
+wait_time = 0.513
+one_shot = true
