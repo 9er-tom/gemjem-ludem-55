@@ -2,6 +2,8 @@ extends Node2D
 
 var lines : Array = [[]]
 
+var prevSymbol : Array = [[]]
+
 #var image : Image
 
 @onready
@@ -12,7 +14,6 @@ var limitRect: Rect2;
 
 func _ready():
 	limitRect = rect.get_rect()
-	print(limitRect)
 
 
 func _draw():
@@ -21,7 +22,12 @@ func _draw():
 			draw_circle(line[0], 3, Color.RED)
 		if line.size() > 1:
 			draw_polyline(line, Color.RED, 4, true)
-	pass
+	
+	for line in prevSymbol:
+		if line.size() == 1:
+			draw_circle(line[0], 3, Color.BLACK)
+		if line.size() > 1:
+			draw_polyline(line, Color.BLACK, 4, true)
 
 
 func _process(_delta):
@@ -29,9 +35,6 @@ func _process(_delta):
 		var mousePosition = get_viewport().get_mouse_position()
 
 		if mousePosition.x > limitRect.position.x && mousePosition.x < limitRect.end.x && mousePosition.y > limitRect.position.y && mousePosition.y < limitRect.end.y: 
-			print(limitRect.position, limitRect.end, mousePosition)
-			print(rect.get_rect())
-
 
 			if lines[-1].size() == 0 || lines[-1][-1] != mousePosition:
 				lines[-1].append(mousePosition)
@@ -43,23 +46,26 @@ func _process(_delta):
 
 
 	if Input.is_action_just_pressed('ui_select'):
-		save_picture()
+		save_picture(lines)
+		prevSymbol = lines
+		lines = [[]]
+		queue_redraw()
 
 
-func save_picture():
+func save_picture(lastSymbol):
 	# Wait until the frame has finished before getting the texture.
 	await RenderingServer.frame_post_draw
 
-	var img = createSymbolImage()
+	var img = createSymbolImage(lastSymbol)
 
 	img.save_png("F:\\Godot Projects\\LD\\gemjem-ludem-55-1\\jem-2d\\scripts\\test.png")
 	imgScorer.scoreImage(img)
 
 
-func createSymbolImage():
+func createSymbolImage(lastSymbol):
 	var img = Image.create(limitRect.size.x, limitRect.size.y, false, 5)
 
-	for line in lines:
+	for line in lastSymbol:
 		var prevPoint = null
 		for point in line:
 			if prevPoint:
@@ -82,8 +88,8 @@ func draw_line_on_img(img, p0, p1, color):
 	var sy = -1 if y0 > y1 else 1
 	var err = dx + dy  # error value e_xy
 	while true:
-		img.set_pixel(x0, y0, color)  # Function to set the pixel (to be implemented)
-		draw_circle_on_img(img, x0, y0, 3, color)
+		#img.set_pixel(x0, y0, color)  # Function to set the pixel (to be implemented)
+		draw_circle_on_img(img, x0, y0, 7, color)
 		if x0 == x1 and y0 == y1:
 			break
 		var e2 = 2 * err
