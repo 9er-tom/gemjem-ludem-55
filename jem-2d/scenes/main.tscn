@@ -1,18 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=6 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="Script" path="res://scripts/pop.gd" id="1_d2xkn"]
 [ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="2_7mnhe"]
 [ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="2_oqfxq"]
 [ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
+[ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
 
 [node name="main" type="Node"]
 
 [node name="Node2D" type="Node2D" parent="."]
-visible = false
 script = ExtResource("1_d2xkn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
-visible = false
 position = Vector2(555, 316)
 scale = Vector2(0.54, 0.54)
 sprite_frames = ExtResource("2_oqfxq")
@@ -31,8 +30,18 @@ offset_bottom = 8.0
 
 [node name="Drawer" type="Node" parent="."]
 
-[node name="Panel" type="Panel" parent="Drawer"]
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Node2D" type="Node2D" parent="Drawer"]
+z_index = 1
 script = ExtResource("4_6begs")
+
+[node name="ImageScorer" type="Node" parent="Drawer/Node2D"]
+script = ExtResource("5_fj68i")
+
+[node name="ColorRect" type="ColorRect" parent="Drawer/Node2D"]
+visibility_layer = 2
+z_index = -1
+offset_top = 336.0
+offset_right = 312.0
+offset_bottom = 648.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
