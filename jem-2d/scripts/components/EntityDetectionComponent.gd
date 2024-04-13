@@ -3,7 +3,6 @@ extends Node2D
 
 @onready var body: CharacterBody2D = get_parent()
 @onready var detectionRange: Area2D = $Area2D
-
 @export_enum("Enemy", "Friendly") var detectionTarget: String
 
 var nearbyEntities: Array[Node2D] = []
@@ -21,7 +20,6 @@ func scan_for_target() -> Node2D:
 		for entity in nearbyEntities:
 			if body.position.distance_to(entity.position) < body.position.distance_to(closestEntity.position):
 				closestEntity = entity
-		print(closestEntity)
 		 #todo remove on kill
 	else:
 		closestEntity = null

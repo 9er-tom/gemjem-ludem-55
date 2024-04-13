@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgvgaephormhj"]
+
+[ext_resource type="Script" path="res://scripts/components/EntityDetectionComponent.gd" id="1_b47bl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4b2us"]
+radius = 129.0
+height = 440.0
+
+[node name="EntityDetectionComponent" type="Node2D"]
+script = ExtResource("1_b47bl")
+detectionTarget = "Enemy"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(128, 0)
+shape = SubResource("CapsuleShape2D_4b2us")

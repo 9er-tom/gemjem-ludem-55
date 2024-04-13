@@ -1,52 +1,50 @@
 class_name enemy
-extends Node
+extends Node2D
 
-@onready var enemy_body = $"../.."
-@onready var animated_sprite_2d = $".."
+@onready var timer: Timer = $"../Timer"
+@onready var enemy_body: CharacterBody2D = get_parent()
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../AnimatedSprite2D"
+@onready var entityDetection: EntityDetectionComponent = $"../EntityDetectionComponent"
+@onready var attackRangeGizmo: Line2D = $"../AttackRangeGizmo"
+
 
 # Speed at which the sprite will move
-var speed = 100
+@export var speed = 100
 var xdirection = -1
 var input_vector = Vector2()
-var attack_range = 100
+@export var attack_range = 500
 
-var detectionRange : Area2D
-signal closest_target
+var closest_target: Node2D = null
 
 func _ready():
-	# Get the Timer node and connect its timeout signal to this script
-	$"../../Timer".start()
+	attackRangeGizmo.points[1].x = attack_range
+	
 	enemy_body.scale.x = enemy_body.scale.x * xdirection
-	detectionRange.body_entered.connect(_on_body_entered)
-	detectionRange.body_exited.connect(_on_body_exited)
-
+	timer.timeout.connect(_on_timer_timeout)
+	timer.start()
 
 func _physics_process(delta):
-	# Apply the movement vector to the velocity
-	
 	# Move the character and slide along collisions
-	if enemy_body.global_position.distance_to(closest_target.global_position) <= attack_range:
-		# Stop the enemy body's movement
-		enemy_body.velocity = Vector2.ZERO
-		# Play the attack animation
-		enemy_body.play("attack")
+	if closest_target != null:
+		rushtarget(closest_target)
+		if enemy_body.position.distance_to(closest_target.position) <= attack_range:
+			enemy_body.velocity = Vector2.ZERO
+			animated_sprite_2d.play("default")
+			timer.stop()
 	else:
-		enemy_body.move_and_slide()
+		rushb()
+	enemy_body.move_and_slide()
 
+func _process(delta: float) -> void:
+	closest_target = entityDetection.scan_for_target()
 
 func _on_timer_timeout():
 	animated_sprite_2d.flip_h = !animated_sprite_2d.flip_h # Flip the sprite horizontally
-	
-func _on_body_entered():
-	rushtarget(closest_target)
-	
-func _on_body_exited():
-	if closest_target != null:
-		rushb()
-	
+
 func rushb():
 	input_vector.x = xdirection
 	input_vector.y = 0
+	enemy_body.velocity = input_vector * speed
 	
 func rushtarget(target):
 	var target_position = target.global_position

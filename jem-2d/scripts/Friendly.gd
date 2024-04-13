@@ -4,34 +4,34 @@ extends Node2D
 @onready var body: CharacterBody2D = get_parent()
 @onready var enemyDetection: EntityDetectionComponent = get_node("../EntityDetectionComponent")
 @onready var sprite: AnimatedSprite2D = get_node("../AnimatedSprite2D")
+@onready var attackRangeGizmo: Line2D = $"../AttackRangeGizmo"
+
 
 var defaultDirection: Vector2 = Vector2.RIGHT
+var closestTarget: Node2D     = null
 
 @export var movespeed: int = 100
+@export var attackRange: int = 300
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    # enemyDetection.closest_target.connect(_on_closest_target)
-    pass
-
-
-#body.velocity = defaultDirection * defaultSpeed
+	attackRangeGizmo.points[1].x = attackRange
 
 func _process(delta: float) -> void:
-    move_towards(enemyDetection.scan_for_target())
+	closestTarget = enemyDetection.scan_for_target()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-    body.move_and_slide()
-    if body.velocity != Vector2.ZERO:
-        sprite.play("walk")
-    else:
-        sprite.play("idle")
 
+	if closestTarget != null:
+		(closestTarget.position - body.position).normalized() * movespeed
+		if body.position.distance_to(closestTarget.position) <= attackRange:
+			body.velocity = Vector2.ZERO
+			sprite.play("attack")
+	else:
+		
+		body.velocity = Vector2.RIGHT * movespeed
+	body.move_and_slide()
+	
+	if body.velocity != Vector2.ZERO:
+		sprite.play("walk")
 
-func move_towards(closestTarget: Node2D ) -> void:
-    var dir: Vector2 = defaultDirection
-    if closestTarget != null:
-        dir = (closestTarget.position - body.position).normalized()
-    body.velocity = dir * movespeed

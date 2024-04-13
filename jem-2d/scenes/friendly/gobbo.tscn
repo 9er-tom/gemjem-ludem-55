@@ -1,8 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://f3cbh0t6wx14"]
+[gd_scene load_steps=25 format=3 uid="uid://f3cbh0t6wx14"]
 
 [ext_resource type="Script" path="res://scripts/Friendly.gd" id="1_b6tvx"]
 [ext_resource type="Texture2D" uid="uid://byf3i4f4mufr2" path="res://assets/img/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png" id="2_nbkyj"]
-[ext_resource type="Script" path="res://scripts/components/EntityDetectionComponent.gd" id="3_6weck"]
+[ext_resource type="PackedScene" uid="uid://bgvgaephormhj" path="res://scenes/entity_detection_component.tscn" id="3_xbkqk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4n8i"]
 radius = 22.0
@@ -159,14 +159,11 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4b2us"]
-radius = 129.0
-height = 440.0
-
 [node name="Gobbo" type="CharacterBody2D"]
 
 [node name="Friendly" type="Node2D" parent="."]
 script = ExtResource("1_b6tvx")
+attackRange = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_u4n8i")
@@ -174,16 +171,14 @@ shape = SubResource("CapsuleShape2D_u4n8i")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_xdrnk")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.109674
+frame = 5
+frame_progress = 0.526227
 
-[node name="EntityDetectionComponent" type="Node2D" parent="."]
-script = ExtResource("3_6weck")
-detectionTarget = "Enemy"
+[node name="EntityDetectionComponent" parent="." instance=ExtResource("3_xbkqk")]
 
-[node name="Area2D" type="Area2D" parent="EntityDetectionComponent"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityDetectionComponent/Area2D"]
-position = Vector2(128, 0)
-shape = SubResource("CapsuleShape2D_4b2us")
+[node name="AttackRangeGizmo" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 0, 100, 0)
+default_color = Color(1, 0, 0, 1)

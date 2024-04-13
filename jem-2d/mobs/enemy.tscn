@@ -1,22 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddahfodd8bt8i"]
+[gd_scene load_steps=7 format=3 uid="uid://ddahfodd8bt8i"]
 
 [ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_j6b23"]
+[ext_resource type="Script" path="res://scripts/components/EntityDetectionComponent.gd" id="2_rhg4o"]
 [ext_resource type="Script" path="res://scripts/enemy_logic.gd" id="2_tvwom"]
-[ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://mobs/health.tscn" id="3_pf7ga"]
+[ext_resource type="Script" path="res://scripts/components/HealthComponent.gd" id="4_o6vot"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kejoo"]
 radius = 279.0
 height = 794.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kx0cf"]
+radius = 777.0
+height = 1554.0
+
 [node name="enemy_body" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_j6b23")
-
-[node name="enemy" type="Node" parent="AnimatedSprite2D"]
-script = ExtResource("2_tvwom")
-
-[node name="health" parent="AnimatedSprite2D/enemy" instance=ExtResource("3_pf7ga")]
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
@@ -25,4 +25,24 @@ wait_time = 1.5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kejoo")
 
-[connection signal="timeout" from="Timer" to="AnimatedSprite2D/enemy" method="_on_timer_timeout"]
+[node name="EntityDetectionComponent" type="Node2D" parent="."]
+script = ExtResource("2_rhg4o")
+detectionTarget = "Friendly"
+
+[node name="Area2D" type="Area2D" parent="EntityDetectionComponent"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityDetectionComponent/Area2D"]
+position = Vector2(474, 0)
+shape = SubResource("CapsuleShape2D_kx0cf")
+
+[node name="Enemy" type="Node2D" parent="."]
+script = ExtResource("2_tvwom")
+attack_range = 300
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("4_o6vot")
+
+[node name="AttackRangeGizmo" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 0, 100, 0)
+default_color = Color(1, 0, 0, 1)
