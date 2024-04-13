@@ -1,7 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=4 format=3 uid="uid://m8o0rqk2ru0u"]
 
-[ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
+[ext_resource type="PackedScene" uid="uid://cspklb0va15d6" path="res://scenes/tile_map.tscn" id="1_t682u"]
+[ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
+
+[sub_resource type="PackedScene" id="PackedScene_7sfmy"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Entity", "Node2D", "Enemy"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 0, 0, 1, 2, -1, 0, 0),
+"variants": [],
+"version": 3
+}
 
 [node name="main" type="Node"]
 
 [node name="TileMap" parent="." instance=ExtResource("1_t682u")]
+
+[node name="SpawnManager" parent="." instance=ExtResource("2_ea76x")]
+spawnPos = Vector2(200, 200)
+debugEntity = SubResource("PackedScene_7sfmy")
