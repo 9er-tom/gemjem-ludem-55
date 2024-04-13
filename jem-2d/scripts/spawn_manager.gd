@@ -29,14 +29,14 @@ func spawn_entity(entity: PackedScene, spawnPos = null) -> void:
 	var ent: Node2D = entity.instantiate()
 
 	if ent.has_node("Enemy"):
+		ent.position = spawnPos if spawnPos else enemySpawnPos
 		$Enemies.add_child(ent)
 		print("enemy")
-		ent.position = spawnPos if spawnPos else enemySpawnPos
 
 	elif ent.has_node("Friendly"):
+		ent.position = spawnPos if spawnPos else friendlySpawnPos
 		$Friendlies.add_child(ent)
 		print("friendly")
-		ent.position = spawnPos if spawnPos else friendlySpawnPos
 
 	else:
 		print("nothing")

@@ -2,4 +2,4 @@
 
 enum AnimationState {SPAWN, IDLE, WALK, ATTACK, DEATH}
 
-var currentState: AnimationState
+var currentState: AnimationState = AnimationState.IDLE

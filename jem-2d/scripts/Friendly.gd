@@ -58,6 +58,8 @@ func attack(target):
 	animState.currentState = AnimationStateComponent.AnimationState.ATTACK
 
 func _on_animation_finished():
-	print(sprite.animation)
 	if sprite.animation == "attack":
-		closestTarget.get_node("Health").damage(attack_damage)
+		closestTarget.get_node("HealthComponent").damage(attack_damage)
+		
+	if sprite.animation == "death":
+		body.queue_free()

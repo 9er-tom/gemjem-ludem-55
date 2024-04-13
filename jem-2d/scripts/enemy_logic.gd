@@ -59,6 +59,8 @@ func attack():
 	timer.stop()
 
 func _on_animation_finished():
-	print(animated_sprite_2d.animation)
 	if animated_sprite_2d.animation == "attack":
-		closest_target.get_node("Health").damage(attack_damage)
+		closest_target.get_node("HealthComponent").damage(attack_damage)
+		
+	if animated_sprite_2d.animation == "death":
+		enemy_body.queue_free()

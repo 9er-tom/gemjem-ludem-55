@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=9 format=3 uid="uid://m8o0rqk2ru0u"]
 
-[ext_resource type="PackedScene" uid="uid://cspklb0va15d6" path="res://scenes/tile_map.tscn" id="1_t682u"]
+[ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
 [ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
 [ext_resource type="PackedScene" uid="uid://ddahfodd8bt8i" path="res://mobs/enemy.tscn" id="4_ivwcq"]
+[ext_resource type="Script" path="res://scripts/Deadzone.gd" id="5_e015q"]
+[ext_resource type="Texture2D" uid="uid://bttv7uqufdhfj" path="res://assets/img/env/barrier/Sprite-0003.png" id="6_mw8eh"]
+[ext_resource type="Texture2D" uid="uid://0nqdh074r6o0" path="res://assets/img/env/barrier/Sprite-0002.png" id="7_fagwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
+size = Vector2(116, 680)
 
 [node name="main" type="Node"]
 
@@ -14,3 +20,63 @@ friendlySpawnPos = Vector2(100, 100)
 enemySpawnPos = Vector2(1000, 100)
 friendlyEntity = ExtResource("3_p7yfg")
 enemyEntity = ExtResource("4_ivwcq")
+
+[node name="Deadzone" type="Area2D" parent="."]
+script = ExtResource("5_e015q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
+position = Vector2(48, 330)
+shape = SubResource("RectangleShape2D_fxxxx")
+
+[node name="DeadzoneGizmo" type="Polygon2D" parent="Deadzone"]
+color = Color(1, 0, 0, 0.360784)
+polygon = PackedVector2Array(0, 0, 108, 0, 108, 670, 0, 670)
+
+[node name="Sprite-0003" type="Sprite2D" parent="Deadzone"]
+texture_filter = 1
+position = Vector2(85, 103)
+scale = Vector2(3, 3)
+texture = ExtResource("6_mw8eh")
+
+[node name="Sprite-0004" type="Sprite2D" parent="Deadzone"]
+z_index = 1
+texture_filter = 1
+position = Vector2(43, 437)
+rotation = 0.190749
+scale = Vector2(3, 3)
+texture = ExtResource("6_mw8eh")
+
+[node name="Sprite-0005" type="Sprite2D" parent="Deadzone"]
+z_index = 1
+texture_filter = 1
+position = Vector2(75, 566)
+scale = Vector2(3, 3)
+texture = ExtResource("6_mw8eh")
+
+[node name="Sprite-0006" type="Sprite2D" parent="Deadzone"]
+z_index = 1
+texture_filter = 1
+position = Vector2(61, 287)
+scale = Vector2(3, 3)
+texture = ExtResource("6_mw8eh")
+
+[node name="Sprite-0002" type="Sprite2D" parent="Deadzone"]
+texture_filter = 1
+position = Vector2(90, 353)
+rotation = -0.0419289
+scale = Vector2(3, 3)
+texture = ExtResource("7_fagwv")
+
+[node name="Sprite-0007" type="Sprite2D" parent="Deadzone"]
+texture_filter = 1
+position = Vector2(74, 206)
+rotation = 0.472557
+scale = Vector2(3, 3)
+texture = ExtResource("7_fagwv")
+
+[node name="Sprite-0008" type="Sprite2D" parent="Deadzone"]
+texture_filter = 1
+position = Vector2(87, 458)
+rotation = -0.0419289
+scale = Vector2(3, 3)
+texture = ExtResource("7_fagwv")
