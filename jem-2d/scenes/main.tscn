@@ -1,15 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=28 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
-[ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
-[ext_resource type="PackedScene" uid="uid://dgpe1q0ihwjui" path="res://scenes/friendly/friend.tscn" id="2_w2647"]
-[ext_resource type="PackedScene" uid="uid://dopqc0nhfwmq2" path="res://scenes/enemy/enemy.tscn" id="3_n8jjw"]
+[ext_resource type="PackedScene" uid="uid://hp2cfubpxitn" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
+[ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
 [ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
-[ext_resource type="PackedScene" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
+[ext_resource type="PackedScene" uid="uid://cxa5p0was128e" path="res://scenes/enemy/knight.tscn" id="4_48i4r"]
+[ext_resource type="PackedScene" uid="uid://ctkgs5hp7riqn" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
 [ext_resource type="Script" path="res://scripts/Deadzone.gd" id="5_e015q"]
 [ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
 [ext_resource type="Texture2D" uid="uid://bttv7uqufdhfj" path="res://assets/img/env/barrier/Sprite-0003.png" id="6_mw8eh"]
-[ext_resource type="Texture2D" uid="uid://38ff5dgndnlq" path="res://assets/img/pentagramt.png" id="7_cykt2"]
 [ext_resource type="Texture2D" uid="uid://0nqdh074r6o0" path="res://assets/img/env/barrier/Sprite-0002.png" id="7_fagwv"]
 [ext_resource type="Texture2D" uid="uid://but7dqx4gnvy2" path="res://assets/img/ben_healthbar/under.png" id="8_0xpqf"]
 [ext_resource type="Texture2D" uid="uid://boh2e10fq4hx7" path="res://assets/img/ben_healthbar/progress.png" id="9_6k5oh"]
@@ -19,8 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://l2f7lky2mxxl" path="res://assets/img/resource_bar/fill.png" id="13_hj5iv"]
 [ext_resource type="Script" path="res://scripts/ui/ResourceManagement.gd" id="14_62vo5"]
 [ext_resource type="Script" path="res://scripts/ui/ResourceText.gd" id="15_qu28h"]
+[ext_resource type="Texture2D" uid="uid://bdmquran0bkse" path="res://assets/img/pentagramBase.png" id="18_53f0t"]
 [ext_resource type="Texture2D" uid="uid://cg46e3nkjxwxo" path="res://assets/img/ui_bar/pentagram.png" id="19_c5sgc"]
 [ext_resource type="Texture2D" uid="uid://2b82hq5elv4r" path="res://assets/img/background.png" id="21_etwka"]
+[ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="21_ebxab"]
+[ext_resource type="Script" path="res://scripts/MovableSpawner.gd" id="22_htrps"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
 size = Vector2(116, 680)
@@ -138,10 +140,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -175.0
+offset_top = -252.0
+offset_right = 176.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Oofies
@@ -213,7 +215,7 @@ size_flags_vertical = 4
 [node name="Sprite2D" type="Sprite2D" parent="HUD/Drawer/Node2D/ColorRect"]
 z_index = -1
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("7_cykt2")
+texture = ExtResource("18_53f0t")
 centered = false
 
 [node name="Timer" type="Timer" parent="HUD/Drawer/Node2D"]
@@ -228,9 +230,11 @@ scale = Vector2(0.952, 0.952)
 tile_set = SubResource("TileSet_rrwj8")
 format = 2
 layer_0/tile_data = PackedInt32Array(2162695, 0, 0, 2162710, 65536, 0, 2162725, 65536, 0, 2162740, 65536, 0, 2162755, 131072, 0)
+metadata/_edit_lock_ = true
 
 [node name="TileMap" parent="." instance=ExtResource("1_t682u")]
 visible = false
+modulate = Color(0.364706, 0.364706, 0.364706, 1)
 z_index = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -241,3 +245,9 @@ scale = Vector2(5.76, 5.39333)
 texture = ExtResource("21_etwka")
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="MovableSpawner" type="Sprite2D" parent="."]
+position = Vector2(155, 129)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("21_ebxab")
+script = ExtResource("22_htrps")

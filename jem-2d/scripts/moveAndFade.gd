@@ -5,6 +5,7 @@ extends Node2D
 @onready
 var timerComponent: Timer = $Timer
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timerComponent.timeout.connect(queue_free)

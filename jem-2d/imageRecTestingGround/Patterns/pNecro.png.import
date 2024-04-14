@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://38ff5dgndnlq"
-path="res://.godot/imported/pentagramt.png-19f64b8b74d121562c99e35af75f28d1.ctex"
+uid="uid://5vc7krhsshrp"
+path="res://.godot/imported/pNecro.png-d296ba6a23dc161dcefa2086cb9c2f93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/pentagramt.png"
-dest_files=["res://.godot/imported/pentagramt.png-19f64b8b74d121562c99e35af75f28d1.ctex"]
+source_file="res://imageRecTestingGround/Patterns/pNecro.png"
+dest_files=["res://.godot/imported/pNecro.png-d296ba6a23dc161dcefa2086cb9c2f93.ctex"]
 
 [params]
 

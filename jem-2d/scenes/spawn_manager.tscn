@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dn4c4s7yqv1s5"]
+[gd_scene load_steps=2 format=3 uid="uid://hp2cfubpxitn"]
 
 [ext_resource type="Script" path="res://scripts/spawn_manager.gd" id="1_bv2gb"]
 
@@ -9,4 +9,6 @@ script = ExtResource("1_bv2gb")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="GameTimer" type="Timer" parent="."]
