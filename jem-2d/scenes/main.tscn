@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=29 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://hp2cfubpxitn" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bdmquran0bkse" path="res://assets/img/pentagramBase.png" id="18_53f0t"]
 [ext_resource type="Texture2D" uid="uid://cg46e3nkjxwxo" path="res://assets/img/ui_bar/pentagram.png" id="19_c5sgc"]
 [ext_resource type="Texture2D" uid="uid://2b82hq5elv4r" path="res://assets/img/background.png" id="21_etwka"]
+[ext_resource type="Script" path="res://scripts/GameScore.gd" id="20_vulhf"]
 [ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="21_ebxab"]
 [ext_resource type="Script" path="res://scripts/MovableSpawner.gd" id="22_htrps"]
 
@@ -231,6 +232,16 @@ tile_set = SubResource("TileSet_rrwj8")
 format = 2
 layer_0/tile_data = PackedInt32Array(2162695, 0, 0, 2162710, 65536, 0, 2162725, 65536, 0, 2162740, 65536, 0, 2162755, 131072, 0)
 metadata/_edit_lock_ = true
+
+[node name="GameScore" type="RichTextLabel" parent="HUD"]
+offset_left = 960.0
+offset_top = 616.0
+offset_right = 1012.0
+offset_bottom = 656.0
+text = "Score: "
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("20_vulhf")
 
 [node name="TileMap" parent="." instance=ExtResource("1_t682u")]
 visible = false
