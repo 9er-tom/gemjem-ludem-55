@@ -27,10 +27,10 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kejoo")
 
-[node name="AttackRangeGizmo" type="Line2D" parent="."]
-visible = false
+[node name="TargetingGizmo" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 80, 0)
 default_color = Color(1, 0, 0, 1)
+end_cap_mode = 2
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_7maye")]
 offset_left = -35.3333
@@ -58,7 +58,6 @@ script = ExtResource("7_vhglf")
 
 [node name="ElementalAffinityComponent" type="Node2D" parent="."]
 script = ExtResource("8_1yvgy")
-local_element = 1
 
 [node name="ElementIndicator" type="Sprite2D" parent="ElementalAffinityComponent"]
 texture_filter = 1

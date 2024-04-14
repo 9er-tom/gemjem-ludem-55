@@ -22,10 +22,8 @@ func _ready():
 	attackRangeGizmo.points[1].x = attack_range
 	enemy_body.scale.x = enemy_body.scale.x * xdirection
 	sprite.animation_finished.connect(_on_animation_finished)
-#	timer.timeout.connect(_on_timer_timeout)
-#	timer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if animState.currentState == AnimationStateComponent.AnimationState.DEATH:
 		return
 		
@@ -43,7 +41,7 @@ func _physics_process(delta):
 	elif animState.currentState != AnimationStateComponent.AnimationState.ATTACK:
 		animState.currentState = AnimationStateComponent.AnimationState.IDLE
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	closest_target = entityDetection.scan_for_target()
 
 	match animState.currentState:
@@ -58,8 +56,6 @@ func _process(delta: float) -> void:
 		AnimationStateComponent.AnimationState.SPAWN:
 			pass
 
-func _on_timer_timeout():
-	sprite.flip_h = !sprite.flip_h # Flip the sprite horizontally
 
 func rushb():
 	input_vector.x = xdirection

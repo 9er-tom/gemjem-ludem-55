@@ -12,8 +12,8 @@
 [ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="10_bepbq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4n8i"]
-radius = 19.0
-height = 38.0
+radius = 9.0
+height = 32.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqeko"]
 atlas = ExtResource("2_nbkyj")
@@ -289,10 +289,11 @@ autoplay = "idle"
 
 [node name="EntityDetectionComponent" parent="." instance=ExtResource("3_xbkqk")]
 
-[node name="AttackRangeGizmo" type="Line2D" parent="."]
+[node name="TargetingGizmo" type="Line2D" parent="."]
 visible = false
 points = PackedVector2Array(0, 0, 100, 0)
 default_color = Color(1, 0, 0, 1)
+end_cap_mode = 2
 
 [node name="AnimationStateComponent" type="Node2D" parent="."]
 script = ExtResource("4_6k5q1")
@@ -306,7 +307,7 @@ attackRange = 150
 
 [node name="ElementalAffinityComponent" type="Node2D" parent="."]
 script = ExtResource("8_hvprk")
-local_element = 3
+local_element = 4
 
 [node name="ElementIndicator" type="Sprite2D" parent="ElementalAffinityComponent"]
 position = Vector2(0, 22)

@@ -21,6 +21,8 @@ func _ready():
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("click"):
 		spawn_entity(friendlyEntity, get_viewport().get_mouse_position())
+	if Input.is_action_just_pressed("rightclick"):
+		spawn_entity(enemyEntity, get_viewport().get_mouse_position())
 		
 
 #todo connect signal to _on_spawn_entity

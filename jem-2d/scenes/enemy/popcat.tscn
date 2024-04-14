@@ -30,7 +30,7 @@ shape = SubResource("CapsuleShape2D_kejoo")
 script = ExtResource("2_tvwom")
 attack_range = 200
 
-[node name="AttackRangeGizmo" type="Line2D" parent="."]
+[node name="TargetingGizmo" type="Line2D" parent="."]
 visible = false
 points = PackedVector2Array(0, 0, 100, 0)
 default_color = Color(1, 0, 0, 1)
