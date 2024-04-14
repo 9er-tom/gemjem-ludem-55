@@ -11,7 +11,7 @@ shader_parameter/period = Vector2(10, 25)
 [node name="DrawnSymbol" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_c11sx")
-fadePercent = 0.8
+fadePercent = 0.5
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.898039, 0, 0.0745098, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=8 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="Script" path="res://scripts/pop.gd" id="1_d2xkn"]
 [ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="2_7mnhe"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
 [ext_resource type="PackedScene" uid="uid://ctkgs5hp7riqn" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
 [ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
+[ext_resource type="Texture2D" uid="uid://bxtq0713a17vx" path="res://scenes/Download-export.png" id="7_eel1w"]
 
 [node name="main" type="Node"]
 
@@ -41,13 +42,23 @@ lastDrawnSymbol = ExtResource("5_4o41v")
 script = ExtResource("5_fj68i")
 
 [node name="ColorRect" type="ColorRect" parent="Drawer/Node2D"]
-visible = false
+self_modulate = Color(1, 1, 1, 0)
 visibility_layer = 2
-z_index = -1
-offset_right = 1150.0
-offset_bottom = 646.0
+z_index = -2
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 344.0
+offset_bottom = 584.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Drawer/Node2D/ColorRect"]
+z_index = -1
+position = Vector2(280, 264)
+rotation = -3.14159
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("7_eel1w")
+centered = false
 
 [node name="Timer" type="Timer" parent="Drawer/Node2D"]
 wait_time = 0.513
