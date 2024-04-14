@@ -1,11 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=30 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://hp2cfubpxitn" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
 [ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
 [ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
 [ext_resource type="PackedScene" uid="uid://cxa5p0was128e" path="res://scenes/enemy/knight.tscn" id="4_48i4r"]
-[ext_resource type="PackedScene" uid="uid://ctkgs5hp7riqn" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
+[ext_resource type="PackedScene" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
 [ext_resource type="Script" path="res://scripts/Deadzone.gd" id="5_e015q"]
 [ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
 [ext_resource type="Texture2D" uid="uid://bttv7uqufdhfj" path="res://assets/img/env/barrier/Sprite-0003.png" id="6_mw8eh"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://scripts/GameScore.gd" id="20_vulhf"]
 [ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="21_ebxab"]
 [ext_resource type="Script" path="res://scripts/MovableSpawner.gd" id="22_htrps"]
+[ext_resource type="AudioStream" uid="uid://btalx3xxycsvl" path="res://assets/audio/main_loop/Gamejam_loop_1.wav" id="24_8d8i5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
 size = Vector2(116, 680)
@@ -253,3 +254,7 @@ position = Vector2(155, 129)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("21_ebxab")
 script = ExtResource("22_htrps")
+
+[node name="MainLoopMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_8d8i5")
+autoplay = true
