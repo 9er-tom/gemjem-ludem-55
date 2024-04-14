@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cet7x1puj1rnp"
+path="res://.godot/imported/Riser01_GameJam (1).wav-7f829bccec0709fa63f8fe6170e2d6a6.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Riser01_GameJam (1).wav"
+dest_files=["res://.godot/imported/Riser01_GameJam (1).wav-7f829bccec0709fa63f8fe6170e2d6a6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

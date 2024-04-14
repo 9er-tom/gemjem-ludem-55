@@ -73,6 +73,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Number5"):
 		createEffect(pWater, 0.95)
 
+
 func checkDist(p1, p2):
 	return false if abs(p1.x - p2.x) < 5 && abs(p1.y - p2.y) < 5 else true
 
