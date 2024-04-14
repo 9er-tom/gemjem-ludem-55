@@ -46,7 +46,6 @@ func spawn_entity(entity: PackedScene, spawnPos: Vector2, elementalType = null):
 		ent.get_node("ElementalAffinityComponent").local_element = elementalType if elementalType != null else randi_range(0, 4) # randomizes element
 		ent.scale *= custom_random(0.7,3) + flatSizeIncrease
 		$Enemies.add_child(ent)
-		print("enemy")
 
 	elif ent.is_in_group("Friendly"):
 		if resources.spend_resource(ent.get_node("StatBlockComponent").spawn_cost):
@@ -54,7 +53,6 @@ func spawn_entity(entity: PackedScene, spawnPos: Vector2, elementalType = null):
 			ent.position = spawnPos
 			ent.get_node("ElementalAffinityComponent").local_element = elementalType if elementalType != null else randi_range(0, 4) # randomizes element
 			$Friendlies.add_child(ent)
-			print("friendly")
 	else:
 		print("nothing")
 
