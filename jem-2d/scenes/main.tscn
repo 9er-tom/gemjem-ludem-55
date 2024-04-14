@@ -28,7 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://btalx3xxycsvl" path="res://assets/audio/main_loop/Gamejam_loop_1.wav" id="24_8d8i5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
-size = Vector2(116, 680)
+size = Vector2(116, 408)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1ql0v"]
 font_size = 100
@@ -65,7 +65,7 @@ position = Vector2(0, -168)
 script = ExtResource("5_e015q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
-position = Vector2(48, 330)
+position = Vector2(48, 373)
 shape = SubResource("RectangleShape2D_fxxxx")
 
 [node name="DeadzoneGizmo" type="Polygon2D" parent="Deadzone"]
