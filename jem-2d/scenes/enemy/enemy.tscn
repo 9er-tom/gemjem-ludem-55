@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://scripts/components/ElementalAffinityComponent.gd" id="8_npxxo"]
 [ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="9_todcu"]
 
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kejoo"]
 radius = 13.0
 height = 52.0
@@ -24,7 +23,6 @@ scale = Vector2(3, 3)
 sprite_frames = ExtResource("1_6a5kr")
 animation = &"idle_1"
 autoplay = "idle_1"
-
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kejoo")
@@ -52,9 +50,7 @@ scale = Vector2(1.3, 0.2)
 detectionTarget = "Friendly"
 
 [node name="StatBlockComponent" type="Node2D" parent="."]
-script = ExtResource("6_isrlf")
-movespeed = 50
-attackRange = 80
+script = ExtResource("6_qnrlf")
 
 [node name="SimpleTargetingLogic" type="Node2D" parent="."]
 script = ExtResource("7_mikb2")

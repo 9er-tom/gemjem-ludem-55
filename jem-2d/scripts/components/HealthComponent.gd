@@ -11,7 +11,7 @@ func _ready():
 	max_value = scale.length() * health_per_inch
 	value = max_value
 
-
+ 
 func damage(damage_points: float):
 	value -= damage_points
 	visible = true
