@@ -19,11 +19,11 @@ var prevSymbols : Array = [[[]]]
 var tex = ImageTexture.new()
 
 func _ready():
-	pFire.load("res://imageRecTestingGround/Patterns/pFire.png")
-	pHoly.load("res://imageRecTestingGround/Patterns/pHoly.png")
-	pLife.load("res://imageRecTestingGround/Patterns/pLife.png")
-	pNecro.load("res://imageRecTestingGround/Patterns/pNecro.png")
-	pWater.load("res://imageRecTestingGround/Patterns/pWater.png")
+	pFire = load("res://imageRecTestingGround/Patterns/pFire.png").get_image()
+	pHoly = load("res://imageRecTestingGround/Patterns/pHoly.png").get_image()
+	pLife = load("res://imageRecTestingGround/Patterns/pLife.png").get_image()
+	pNecro = load("res://imageRecTestingGround/Patterns/pNecro.png").get_image()
+	pWater = load("res://imageRecTestingGround/Patterns/pWater.png").get_image()
 
 	timerComponent.timeout.connect(activateSymbol)
 	limitRect = rect.get_rect()
@@ -47,6 +47,9 @@ func _process(_delta):
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		timerComponent.start()
 
+		if not $AudioStreamPlayer.is_playing():
+			$AudioStreamPlayer.play()
+
 		var mousePosition = get_viewport().get_mouse_position()
 		if mousePosition.x > limitRect.position.x && mousePosition.x < limitRect.end.x && mousePosition.y > limitRect.position.y && mousePosition.y < limitRect.end.y: 
 
@@ -55,6 +58,7 @@ func _process(_delta):
 				queue_redraw()
 	
 	else:
+		$AudioStreamPlayer.stop()
 		if lines[-1].size() != 0:
 			lines.append([])
 
@@ -68,6 +72,7 @@ func _process(_delta):
 		createEffect(pLife, 0.95)
 	if Input.is_action_just_pressed("Number5"):
 		createEffect(pWater, 0.95)
+
 
 func checkDist(p1, p2):
 	return false if abs(p1.x - p2.x) < 5 && abs(p1.y - p2.y) < 5 else true
