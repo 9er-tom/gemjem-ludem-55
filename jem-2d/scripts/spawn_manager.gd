@@ -1,9 +1,5 @@
 extends Node2D
 
-signal entity_spawned
-@export var friendlySpawnPos: Vector2
-@export var enemySpawnPos: Vector2
-
 @export var friendlyEntity: PackedScene
 @export var enemyEntity: PackedScene
 
@@ -26,12 +22,12 @@ func _process(delta: float) -> void:
 		spawn_entity(enemyEntity, get_viewport().get_mouse_position())
 		
 
-#todo connect signal to _on_spawn_entity
-
-func spawn_entity(entity: PackedScene, spawnPos = null):
+func spawn_entity(entity: PackedScene, spawnPos: Vector2):
+	spawnPos.y = clamp(spawnPos.y, 0, 380)
+	
 	var ent: Node2D = entity.instantiate()
 	if ent.is_in_group("Enemy"):
-		ent.position = spawnPos if spawnPos else enemySpawnPos
+		ent.position = spawnPos
 		ent.get_node("ElementalAffinityComponent").local_element = randi_range(0,4) # randomizes element
 		ent.scale *= randf_range(0.5, 3) 
 		$Enemies.add_child(ent)
@@ -39,7 +35,7 @@ func spawn_entity(entity: PackedScene, spawnPos = null):
 
 	elif ent.is_in_group("Friendly"):
 		if resources.spend_resource(ent.get_node("StatBlockComponent").spawn_cost):
-			ent.position = spawnPos if spawnPos else friendlySpawnPos
+			ent.position = spawnPos
 			$Friendlies.add_child(ent)
 			print("friendly")
 	else:

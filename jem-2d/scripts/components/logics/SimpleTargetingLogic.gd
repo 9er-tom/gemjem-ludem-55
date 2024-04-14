@@ -23,7 +23,7 @@ func _ready() -> void:
     sprite.set_flip_h(defaultDirection == Vector2.LEFT)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     match animState.currentState:
         AnimationStateComponent.AnimationState.WALK:
             sprite.play("walk")
@@ -74,7 +74,7 @@ func _physics_process(_delta: float) -> void:
     body.move_and_slide()
 
 
-func attack(target):
+func attack(_target):
     body.velocity = Vector2.ZERO
     animState.currentState = AnimationStateComponent.AnimationState.ATTACK
 

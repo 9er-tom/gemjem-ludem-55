@@ -305,7 +305,7 @@ script = ExtResource("7_ftxen")
 [node name="StatBlockComponent" type="Node2D" parent="."]
 script = ExtResource("8_txv7w")
 attackRange = 150
-spawn_cost = 35
+spawn_cost = 20
 resource_on_death = 2
 
 [node name="ElementalAffinityComponent" type="Node2D" parent="."]

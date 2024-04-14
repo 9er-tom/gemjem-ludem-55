@@ -1,17 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=26 format=3 uid="uid://m8o0rqk2ru0u"]
 
-[ext_resource type="Script" path="res://scripts/pop.gd" id="1_d2xkn"]
-[ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="2_7mnhe"]
-[ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="2_oqfxq"]
-[ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
-[ext_resource type="PackedScene" uid="uid://ctkgs5hp7riqn" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
-[ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
-[ext_resource type="Texture2D" uid="uid://38ff5dgndnlq" path="res://assets/img/pentagramt.png" id="7_cykt2"]
+[ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
 [ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
+[ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
 [ext_resource type="PackedScene" uid="uid://cxa5p0was128e" path="res://scenes/enemy/knight.tscn" id="4_48i4r"]
+[ext_resource type="PackedScene" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
 [ext_resource type="Script" path="res://scripts/Deadzone.gd" id="5_e015q"]
+[ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
 [ext_resource type="Texture2D" uid="uid://bttv7uqufdhfj" path="res://assets/img/env/barrier/Sprite-0003.png" id="6_mw8eh"]
+[ext_resource type="Texture2D" uid="uid://38ff5dgndnlq" path="res://assets/img/pentagramt.png" id="7_cykt2"]
 [ext_resource type="Texture2D" uid="uid://0nqdh074r6o0" path="res://assets/img/env/barrier/Sprite-0002.png" id="7_fagwv"]
 [ext_resource type="Texture2D" uid="uid://but7dqx4gnvy2" path="res://assets/img/ben_healthbar/under.png" id="8_0xpqf"]
 [ext_resource type="Texture2D" uid="uid://boh2e10fq4hx7" path="res://assets/img/ben_healthbar/progress.png" id="9_6k5oh"]
@@ -21,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://l2f7lky2mxxl" path="res://assets/img/resource_bar/fill.png" id="13_hj5iv"]
 [ext_resource type="Script" path="res://scripts/ui/ResourceManagement.gd" id="14_62vo5"]
 [ext_resource type="Script" path="res://scripts/ui/ResourceText.gd" id="15_qu28h"]
+[ext_resource type="Texture2D" uid="uid://cg46e3nkjxwxo" path="res://assets/img/ui_bar/pentagram.png" id="19_c5sgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
 size = Vector2(116, 680)
@@ -35,66 +34,24 @@ shadow_offset = Vector2(-5, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_bqjbm"]
 font_size = 40
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2bw4"]
+texture = ExtResource("19_c5sgc")
+texture_region_size = Vector2i(250, 250)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_rrwj8"]
+sources/0 = SubResource("TileSetAtlasSource_n2bw4")
+
 [node name="main" type="Node"]
 
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("1_d2xkn")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
-position = Vector2(555, 316)
-scale = Vector2(0.54, 0.54)
-sprite_frames = ExtResource("2_oqfxq")
-autoplay = "default"
-frame = 1
-frame_progress = 0.310148
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-position = Vector2(594, 315)
-scale = Vector2(0.531875, 0.531875)
-texture = ExtResource("2_7mnhe")
-
-[node name="Test" type="TextEdit" parent="Node2D"]
-visible = false
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="Drawer" type="Node" parent="."]
-
-[node name="Node2D" type="Node2D" parent="Drawer"]
-z_index = 1
-script = ExtResource("4_6begs")
-lastDrawnSymbol = ExtResource("5_4o41v")
-
-[node name="ImageScorer" type="Node" parent="Drawer/Node2D"]
-script = ExtResource("5_fj68i")
-
-[node name="ColorRect" type="ColorRect" parent="Drawer/Node2D"]
-self_modulate = Color(1, 1, 1, 0)
-visibility_layer = 2
-z_index = -2
-offset_top = 348.0
-offset_right = 300.0
-offset_bottom = 644.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Sprite2D" type="Sprite2D" parent="Drawer/Node2D/ColorRect"]
-z_index = -1
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("7_cykt2")
-centered = false
-
-[node name="Timer" type="Timer" parent="Drawer/Node2D"]
-wait_time = 0.513
-one_shot = true
-
 [node name="SpawnManager" parent="." instance=ExtResource("2_ea76x")]
-friendlySpawnPos = Vector2(100, 100)
-enemySpawnPos = Vector2(1000, 100)
 friendlyEntity = ExtResource("3_p7yfg")
 enemyEntity = ExtResource("4_48i4r")
 
 [node name="Deadzone" type="Area2D" parent="."]
+position = Vector2(0, -168)
 script = ExtResource("5_e015q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
@@ -162,9 +119,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -300.0
-offset_top = 11.0
+offset_top = 607.0
 offset_right = 300.0
-offset_bottom = 36.0
+offset_bottom = 632.0
 grow_horizontal = 2
 max_value = 10.0
 value = 10.0
@@ -197,10 +154,10 @@ texture_filter = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -158.0
-offset_top = 12.0
-offset_right = -24.0
-offset_bottom = 146.0
+offset_left = -188.0
+offset_top = 469.0
+offset_right = -54.0
+offset_bottom = 603.0
 grow_horizontal = 0
 value = 50.0
 fill_mode = 3
@@ -229,3 +186,49 @@ label_settings = SubResource("LabelSettings_bqjbm")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("15_qu28h")
+
+[node name="Drawer" type="Node" parent="HUD"]
+
+[node name="Node2D" type="Node2D" parent="HUD/Drawer"]
+z_index = 1
+script = ExtResource("4_6begs")
+lastDrawnSymbol = ExtResource("5_4o41v")
+
+[node name="ImageScorer" type="Node" parent="HUD/Drawer/Node2D"]
+script = ExtResource("5_fj68i")
+
+[node name="ColorRect" type="ColorRect" parent="HUD/Drawer/Node2D"]
+self_modulate = Color(1, 1, 1, 0)
+visibility_layer = 2
+z_index = -2
+texture_filter = 1
+offset_top = 410.0
+offset_right = 300.0
+offset_bottom = 706.0
+scale = Vector2(0.793094, 0.793094)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/Drawer/Node2D/ColorRect"]
+z_index = -1
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("7_cykt2")
+centered = false
+
+[node name="Timer" type="Timer" parent="HUD/Drawer/Node2D"]
+wait_time = 0.513
+one_shot = true
+
+[node name="UiBar" type="TileMap" parent="HUD"]
+z_index = -5
+texture_filter = 1
+position = Vector2(5, 19)
+scale = Vector2(0.952, 0.952)
+tile_set = SubResource("TileSet_rrwj8")
+format = 2
+layer_0/tile_data = PackedInt32Array(2162695, 0, 0, 2162710, 65536, 0, 2162725, 65536, 0, 2162740, 65536, 0, 2162755, 131072, 0)
+
+[node name="TileMap" parent="." instance=ExtResource("1_t682u")]
+z_index = -1
+
+[node name="Node2D" type="Node2D" parent="."]
