@@ -9,9 +9,12 @@ extends Node2D
 @onready var statBlock: StatBlockComponent = $"../StatBlockComponent"
 @onready var killComponent: KillComponent = $"../KillComponent"
 @onready var elementalAffinity: ElementalAffinityComponent = $"../ElementalAffinityComponent"
+@onready var resourceManagement: ResourceManagement = $"/root/main/HUD/ResourceBar"
 @onready var defaultDirection: Vector2 = Vector2.RIGHT if body.is_in_group("Friendly") else Vector2.LEFT
 
 var closestTarget: Node2D = null
+
+@export var showTargetingGizmo: bool = false
 
 
 func _ready() -> void:
@@ -41,8 +44,9 @@ func _process(delta: float) -> void:
     animState.currentState = AnimationStateComponent.AnimationState.WALK
     # if target is found
     if closestTarget != null:
-        targetingGizmo.points[1] = closestTarget.global_position - body.global_position
-        targetingGizmo.show()
+        if showTargetingGizmo:
+            targetingGizmo.points[1] = closestTarget.global_position - body.global_position
+            targetingGizmo.show()
         body.velocity = (closestTarget.position - body.position).normalized() * statBlock.movespeed # move towards target
         if body.position.distance_to(closestTarget.position) <= statBlock.attackRange:
             sprite.set_flip_h((closestTarget.position.x - body.position.x) < 0) # flip sprite if target stands opposite to default direction
@@ -79,6 +83,9 @@ func _on_animation_finished():
     if sprite.animation == "attack":
         # closestTarget could already be dead and removed when attack animation finishes
         if closestTarget:
+            # gain resource on hit for friendlies
+            if body.is_in_group("Friendly"):
+                resourceManagement.gain_resource(statBlock.resource_on_hit)
             # if affinity is effective, deal 150% damage, otherwise 100%
             var damageScaling: float = 1 if elementalAffinity.calc_affinity(closestTarget) <= 0 else statBlock.elementalAffinityDamageScaling
             closestTarget.get_node("HealthComponent").damage(statBlock.attack_damage * damageScaling)

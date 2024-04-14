@@ -15,7 +15,6 @@ radius = 13.0
 height = 52.0
 
 [node name="enemy_body" type="CharacterBody2D" groups=["Enemy"]]
-scale = Vector2(1.5, 1.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2

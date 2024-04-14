@@ -276,6 +276,7 @@ offset_left = -32.0
 offset_top = -88.0
 offset_right = 32.0
 offset_bottom = -80.0
+health_per_inch = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_u4n8i")
@@ -304,6 +305,8 @@ script = ExtResource("7_ftxen")
 [node name="StatBlockComponent" type="Node2D" parent="."]
 script = ExtResource("8_txv7w")
 attackRange = 150
+spawn_cost = 35
+resource_on_death = 2
 
 [node name="ElementalAffinityComponent" type="Node2D" parent="."]
 script = ExtResource("8_hvprk")
