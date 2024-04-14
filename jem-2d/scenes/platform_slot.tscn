@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca7x2w6gefxdm"]
+
+[ext_resource type="Script" path="res://scripts/dragPlatform.gd" id="1_s5yxy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx2ia"]
+size = Vector2(100, 150)
+
+[node name="PlatformSlot" type="Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["dropPlatform"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_s5yxy")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+custom_minimum_size = Vector2(100, 0)
+offset_right = 100.0
+offset_bottom = 150.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(50, 75)
+shape = SubResource("RectangleShape2D_vx2ia")

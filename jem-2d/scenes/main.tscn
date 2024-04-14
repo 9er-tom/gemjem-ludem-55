@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
-[ext_resource type="PackedScene" uid="uid://hp2cfubpxitn" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
+[ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
 [ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
 [ext_resource type="AudioStream" uid="uid://bnolfjclqdb77" path="res://assets/sounds/Klick01_GameJam.wav" id="4_4vtsx"]
 [ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
@@ -21,10 +21,13 @@
 [ext_resource type="Script" path="res://scripts/ui/ResourceText.gd" id="15_qu28h"]
 [ext_resource type="Texture2D" uid="uid://bdmquran0bkse" path="res://assets/img/pentagramBase.png" id="18_53f0t"]
 [ext_resource type="Texture2D" uid="uid://cg46e3nkjxwxo" path="res://assets/img/ui_bar/pentagram.png" id="19_c5sgc"]
+[ext_resource type="Script" path="res://scripts/dragPlatform.gd" id="20_5xl1k"]
+[ext_resource type="PackedScene" uid="uid://ca7x2w6gefxdm" path="res://scenes/platform_slot.tscn" id="20_fn2vy"]
 [ext_resource type="AudioStream" uid="uid://nsvnrfh0nb3w" path="res://assets/sounds/dry_scribble_01.wav" id="19_loalx"]
 [ext_resource type="Script" path="res://scripts/GameScore.gd" id="20_vulhf"]
 [ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="21_ebxab"]
 [ext_resource type="Script" path="res://scripts/MovableSpawner.gd" id="22_htrps"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
 size = Vector2(116, 680)
@@ -48,6 +51,9 @@ texture_region_size = Vector2i(250, 250)
 
 [sub_resource type="TileSet" id="TileSet_rrwj8"]
 sources/0 = SubResource("TileSetAtlasSource_n2bw4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y872s"]
+size = Vector2(421.859, 411.125)
 
 [node name="main" type="Node"]
 
@@ -146,10 +152,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = -252.0
-offset_right = 176.0
-offset_bottom = 25.0
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Oofies
@@ -252,9 +258,66 @@ fit_content = true
 autowrap_mode = 0
 script = ExtResource("20_vulhf")
 
+[node name="SlotArea" type="HBoxContainer" parent="HUD"]
+anchors_preset = -1
+anchor_top = 0.654
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_top = 0.207977
+offset_right = -236.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlatformSlot" parent="HUD/SlotArea" instance=ExtResource("20_fn2vy")]
+layout_mode = 2
+
+[node name="PlatformSlot2" parent="HUD/SlotArea" instance=ExtResource("20_fn2vy")]
+layout_mode = 2
+
+[node name="PlatformSlot3" parent="HUD/SlotArea" instance=ExtResource("20_fn2vy")]
+layout_mode = 2
+
+[node name="PlatformSlot4" parent="HUD/SlotArea" instance=ExtResource("20_fn2vy")]
+layout_mode = 2
+
+[node name="PlatformSlot5" parent="HUD/SlotArea" instance=ExtResource("20_fn2vy")]
+layout_mode = 2
+
+[node name="PlatformSlot6" parent="HUD/SlotArea" instance=ExtResource("20_fn2vy")]
+layout_mode = 2
+
 [node name="TileMap" parent="." instance=ExtResource("1_t682u")]
 modulate = Color(0.364706, 0.364706, 0.364706, 1)
 z_index = -1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileMap" groups=["dropable"]]
+position = Vector2(166.555, 150.905)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("20_5xl1k")
+
+[node name="ColorRect" type="ColorRect" parent="TileMap/StaticBody2D"]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.555
+offset_top = -151.905
+offset_right = 367.13
+offset_bottom = 258.095
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/StaticBody2D"]
+position = Vector2(153.515, 54.095)
+shape = SubResource("RectangleShape2D_y872s")
 
 [node name="Node2D" type="Node2D" parent="."]
 

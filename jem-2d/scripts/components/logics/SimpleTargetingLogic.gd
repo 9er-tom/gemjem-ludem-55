@@ -13,6 +13,7 @@ extends Node2D
 @onready var defaultDirection: Vector2 = Vector2.RIGHT if body.is_in_group("Friendly") else Vector2.LEFT
 
 var closestTarget: Node2D = null
+var unitPaused: bool = false
 
 @export var showTargetingGizmo: bool = false
 
@@ -45,10 +46,12 @@ func _ready() -> void:
 				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy4.tres")
 			elementalAffinity.ElementType.LIFE:
 				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy5.tres")
-	
+
 
 
 func _process(_delta: float) -> void:
+	if unitPaused:
+		return
 	match animState.currentState:
 		AnimationStateComponent.AnimationState.WALK:
 			sprite.play("walk")
@@ -93,6 +96,8 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if unitPaused:
+		return
 	if animState.currentState == AnimationStateComponent.AnimationState.DEATH:
 		return
 
@@ -117,3 +122,9 @@ func _on_animation_finished():
 
 	if sprite.animation == "death":
 		body.queue_free()
+
+func setUnitPaused(paused: bool):
+	if paused: enemyDetection.detectionRange.collision_layer = 1
+	else: enemyDetection.detectionRange.collision_layer = 1
+	unitPaused = paused
+

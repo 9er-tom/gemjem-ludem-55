@@ -1,4 +1,4 @@
-﻿class_name StatBlockComponent extends Node2D
+class_name StatBlockComponent extends Node2D
 
 
 @export var movespeed: int = 100
