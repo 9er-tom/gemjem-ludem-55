@@ -1,4 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://di21qatgjxa18"]
+[gd_scene load_steps=2 format=3 uid="uid://dlvt283daxvwo"]
+
 
 [ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_wvrkx"]
 

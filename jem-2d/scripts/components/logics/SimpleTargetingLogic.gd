@@ -12,6 +12,7 @@ extends Node2D
 @onready var resourceManagement: ResourceManagement = $"/root/main/HUD/ResourceBar"
 @onready var defaultDirection: Vector2 = Vector2.RIGHT if body.is_in_group("Friendly") else Vector2.LEFT
 
+
 var closestTarget: Node2D = null
 
 @export var showTargetingGizmo: bool = false
@@ -20,6 +21,7 @@ var closestTarget: Node2D = null
 func _ready() -> void:
 	targetingGizmo.points[1].x = statBlock.attackRange
 	sprite.animation_finished.connect(_on_animation_finished)
+	sprite.animation_changed.connect(_on_animation_start)
 	sprite.set_flip_h(defaultDirection == Vector2.LEFT)
 	if body.is_in_group("Friendly"):
 		match elementalAffinity.local_element:
@@ -103,6 +105,11 @@ func attack(_target):
 	body.velocity = Vector2.ZERO
 	animState.currentState = AnimationStateComponent.AnimationState.ATTACK
 
+func _on_animation_start():
+	if sprite.animation == "walk":
+		$"../AudioStreamPlayer2D_stomp".play()
+	if sprite.animation == "death":
+		$"../AudioStreamPlayer2D_die".play()
 
 func _on_animation_finished():
 	if sprite.animation == "attack":
@@ -114,6 +121,9 @@ func _on_animation_finished():
 			# if affinity is effective, deal 150% damage, otherwise 100%
 			var damageScaling: float = 1 if elementalAffinity.calc_affinity(closestTarget) <= 0 else statBlock.elementalAffinityDamageScaling
 			closestTarget.get_node("HealthComponent").damage(statBlock.attack_damage * damageScaling)
+			$"../AudioStreamPlayer2D_attack".play()
+	if sprite.animation == "walk":
+		$"../AudioStreamPlayer2D_stomp".stop()
 
 	if sprite.animation == "death":
 		body.queue_free()

@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxa5p0was128e"]
+[gd_scene load_steps=14 format=3 uid="uid://cxa5p0was128e"]
 
-[ext_resource type="SpriteFrames" uid="uid://b65dejxki08mg" path="res://assets/spriteframes/enemy.tres" id="2_tefx3"]
+
+[ext_resource type="SpriteFrames" uid="uid://pgt18xwaeoi" path="res://assets/spriteframes/enemy.tres" id="2_tefx3"]
+
 [ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://scenes/health.tscn" id="3_7maye"]
 [ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="4_q6cwk"]
 [ext_resource type="Script" path="res://scripts/components/AnimationStateComponent.gd" id="5_2b3mr"]
@@ -9,6 +11,9 @@
 [ext_resource type="Script" path="res://scripts/components/logics/SimpleTargetingLogic.gd" id="7_vhglf"]
 [ext_resource type="Script" path="res://scripts/components/ElementalAffinityComponent.gd" id="8_1yvgy"]
 [ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="9_5xokw"]
+[ext_resource type="AudioStream" uid="uid://i80o3vwohyty" path="res://assets/sounds/enemy_stomps.wav" id="10_8mtry"]
+[ext_resource type="AudioStream" uid="uid://ddq87hw3xt01x" path="res://assets/sounds/attack.wav" id="11_2lj76"]
+[ext_resource type="AudioStream" uid="uid://d11o67hn5pvuo" path="res://assets/sounds/death.wav" id="12_ts8yi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kejoo"]
 radius = 13.0
@@ -65,3 +70,15 @@ texture_filter = 1
 position = Vector2(0, 22)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("9_5xokw")
+
+[node name="AudioStreamPlayer2D_stomp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_8mtry")
+volume_db = -12.0
+
+[node name="AudioStreamPlayer2D_attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_2lj76")
+volume_db = -12.0
+
+[node name="AudioStreamPlayer2D_die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_ts8yi")
+volume_db = -30.0

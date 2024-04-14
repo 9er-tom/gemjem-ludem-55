@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://scripts/MovableSpawner.gd" id="22_htrps"]
 [ext_resource type="AudioStream" uid="uid://btalx3xxycsvl" path="res://assets/audio/main_loop/Gamejam_loop_1.wav" id="24_8d8i5"]
 
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
 size = Vector2(116, 408)
 
