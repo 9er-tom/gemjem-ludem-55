@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=33 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://hp2cfubpxitn" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://boh2e10fq4hx7" path="res://assets/img/ben_healthbar/progress.png" id="9_6k5oh"]
 [ext_resource type="Script" path="res://scripts/ui/BarrierHealth.gd" id="10_saxeg"]
 [ext_resource type="Texture2D" uid="uid://bc3u604libdwo" path="res://assets/img/resource_bar/bg.png" id="11_p4l1p"]
+[ext_resource type="FontFile" uid="uid://cp7r3urx4h4bt" path="res://assets/alagard.ttf" id="11_ptbxs"]
 [ext_resource type="Texture2D" uid="uid://b6fvp58c46ikp" path="res://assets/img/resource_bar/fg.png" id="12_p7wur"]
 [ext_resource type="Texture2D" uid="uid://l2f7lky2mxxl" path="res://assets/img/resource_bar/fill.png" id="13_hj5iv"]
 [ext_resource type="Script" path="res://scripts/ui/ResourceManagement.gd" id="14_62vo5"]
@@ -27,11 +28,11 @@
 [ext_resource type="Script" path="res://scripts/MovableSpawner.gd" id="22_htrps"]
 [ext_resource type="AudioStream" uid="uid://cgvtjutkteiqf" path="res://assets/audio/main_loop/Gamejam loop 1.4.wav" id="24_uuueb"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
 size = Vector2(116, 408)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1ql0v"]
+font = ExtResource("11_ptbxs")
 font_size = 100
 font_color = Color(0.686275, 0, 0, 1)
 shadow_size = 20
@@ -39,6 +40,7 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(-5, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bqjbm"]
+font = ExtResource("11_ptbxs")
 font_size = 40
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2bw4"]
@@ -179,6 +181,7 @@ texture_progress = ExtResource("13_hj5iv")
 script = ExtResource("14_62vo5")
 
 [node name="value" type="Label" parent="HUD/ResourceBar"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -245,10 +248,12 @@ layer_0/tile_data = PackedInt32Array(2162695, 0, 0, 2162710, 65536, 0, 2162725, 
 metadata/_edit_lock_ = true
 
 [node name="GameScore" type="RichTextLabel" parent="HUD"]
+texture_filter = 1
 offset_left = 960.0
 offset_top = 616.0
 offset_right = 1012.0
 offset_bottom = 656.0
+theme_override_fonts/normal_font = ExtResource("11_ptbxs")
 text = "Score: "
 fit_content = true
 autowrap_mode = 0
@@ -267,5 +272,6 @@ texture = ExtResource("21_ebxab")
 script = ExtResource("22_htrps")
 
 [node name="MainLoopMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("24_uuueb")
 autoplay = true
