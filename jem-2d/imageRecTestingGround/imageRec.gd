@@ -20,11 +20,11 @@ func _ready():
 	#circlePatternImage.load("res://imageRecTestingGround/PatternCircle.png")
 	#triagPatternImage.load("res://imageRecTestingGround/PatternTriangle.png")
 
-	pFire.load("res://imageRecTestingGround/Patterns/pFire.png")
-	pHoly.load("res://imageRecTestingGround/Patterns/pHoly.png")
-	pLife.load("res://imageRecTestingGround/Patterns/pLife.png")
-	pNecro.load("res://imageRecTestingGround/Patterns/pNecro.png")
-	pWater.load("res://imageRecTestingGround/Patterns/pWater.png")
+	pFire = load("res://imageRecTestingGround/Patterns/pFire.png").get_image()
+	pHoly = load("res://imageRecTestingGround/Patterns/pHoly.png").get_image()
+	pLife = load("res://imageRecTestingGround/Patterns/pLife.png").get_image()
+	pNecro = load("res://imageRecTestingGround/Patterns/pNecro.png").get_image()
+	pWater = load("res://imageRecTestingGround/Patterns/pWater.png").get_image()
 
 
 	#drawingImage.load("res://imageRecTestingGround/BadRecDrawing.png")
