@@ -12,16 +12,16 @@ var closestEntity: Node2D         = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    pass
+	pass
 
 
 func scan_for_target() -> Node2D:
-    nearbyEntities = detectionRange.get_overlapping_bodies().filter(func targetsOnly(body: Node2D): return body.is_in_group(detectionTarget))
-    if nearbyEntities.size() != 0:
-        closestEntity = nearbyEntities[0]
-        for entity in nearbyEntities:
-            if body.position.distance_to(entity.position) < body.position.distance_to(closestEntity.position):
-                closestEntity = entity
-    else:
-        closestEntity = null
-    return closestEntity
+	nearbyEntities = detectionRange.get_overlapping_bodies().filter(func targetsOnly(body: Node2D): return body.is_in_group(detectionTarget))
+	if nearbyEntities.size() != 0:
+		closestEntity = nearbyEntities[0]
+		for entity in nearbyEntities:
+			if body.position.distance_to(entity.position) < body.position.distance_to(closestEntity.position):
+				closestEntity = entity
+	else:
+		closestEntity = null
+	return closestEntity

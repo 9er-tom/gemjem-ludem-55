@@ -18,15 +18,15 @@ var affinityMatrix = [
 func _ready() -> void:
 	match local_element:
 		ElementType.NECRO:
-			coloredIndicator.modulate =Color.hex(0x230000ff)
+			coloredIndicator.modulate =Color.hex(0x230000ff)#black1
 		ElementType.HOLY:
-			coloredIndicator.modulate =Color.hex(0xffff2fff)
+			coloredIndicator.modulate =Color.hex(0xffff2fff)#yello2
 		ElementType.FIRE:
-			coloredIndicator.modulate =Color.hex(0xff4d00ff)
+			coloredIndicator.modulate =Color.hex(0xff4d00ff)#oringe3
 		ElementType.WATER:
-			coloredIndicator.modulate =Color.hex(0x00cfffff)
+			coloredIndicator.modulate =Color.hex(0x00cfffff)#blu4
 		ElementType.LIFE:
-			coloredIndicator.modulate =Color.hex(0x14d300ff)
+			coloredIndicator.modulate =Color.hex(0x14d300ff)#brighter grin5
 
 
 func calc_affinity(target: Node2D):
