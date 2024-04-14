@@ -1,10 +1,4 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dfursqxl6eamw"]
+[gd_resource type="AudioBusLayout" format=3 uid="uid://cfiqn7dkb0afc"]
 
 [resource]
-bus/0/volume_db = -2.70802
-bus/1/name = &"offset_bg"
-bus/1/solo = false
-bus/1/mute = false
-bus/1/bypass_fx = false
-bus/1/volume_db = -2.3125
-bus/1/send = &"Master"
+bus/0/volume_db = 0

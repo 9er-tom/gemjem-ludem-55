@@ -25,7 +25,7 @@
 [ext_resource type="Script" path="res://scripts/GameScore.gd" id="20_vulhf"]
 [ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="21_ebxab"]
 [ext_resource type="Script" path="res://scripts/MovableSpawner.gd" id="22_htrps"]
-[ext_resource type="AudioStream" uid="uid://btalx3xxycsvl" path="res://assets/audio/main_loop/Gamejam_loop_1.wav" id="24_8d8i5"]
+[ext_resource type="AudioStream" uid="uid://cgvtjutkteiqf" path="res://assets/audio/main_loop/Gamejam loop 1.4.wav" id="24_uuueb"]
 
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
@@ -267,5 +267,5 @@ texture = ExtResource("21_ebxab")
 script = ExtResource("22_htrps")
 
 [node name="MainLoopMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("24_8d8i5")
+stream = ExtResource("24_uuueb")
 autoplay = true
