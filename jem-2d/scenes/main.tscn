@@ -72,6 +72,7 @@ position = Vector2(48, 373)
 shape = SubResource("RectangleShape2D_fxxxx")
 
 [node name="DeadzoneGizmo" type="Polygon2D" parent="Deadzone"]
+visible = false
 color = Color(1, 0, 0, 0.360784)
 polygon = PackedVector2Array(0, 0, 108, 0, 108, 670, 0, 670)
 
