@@ -1,6 +1,12 @@
 [gd_scene load_steps=19 format=3 uid="uid://m8o0rqk2ru0u"]
 
-[ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
+[ext_resource type="Script" path="res://scripts/pop.gd" id="1_d2xkn"]
+[ext_resource type="Texture2D" uid="uid://by6nn225324ql" path="res://assets/img/popcat/pop_0.png" id="2_7mnhe"]
+[ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="2_oqfxq"]
+[ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
+[ext_resource type="PackedScene" uid="uid://ctkgs5hp7riqn" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
+[ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
+[ext_resource type="Texture2D" uid="uid://38ff5dgndnlq" path="res://assets/img/pentagramt.png" id="7_cykt2"]
 [ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
 [ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
 [ext_resource type="PackedScene" uid="uid://cxa5p0was128e" path="res://scenes/enemy/knight.tscn" id="4_48i4r"]
@@ -31,7 +37,56 @@ font_size = 40
 
 [node name="main" type="Node"]
 
-[node name="TileMap" parent="." instance=ExtResource("1_t682u")]
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_d2xkn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(555, 316)
+scale = Vector2(0.54, 0.54)
+sprite_frames = ExtResource("2_oqfxq")
+autoplay = "default"
+frame = 1
+frame_progress = 0.310148
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(594, 315)
+scale = Vector2(0.531875, 0.531875)
+texture = ExtResource("2_7mnhe")
+
+[node name="Test" type="TextEdit" parent="Node2D"]
+visible = false
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Drawer" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Drawer"]
+z_index = 1
+script = ExtResource("4_6begs")
+lastDrawnSymbol = ExtResource("5_4o41v")
+
+[node name="ImageScorer" type="Node" parent="Drawer/Node2D"]
+script = ExtResource("5_fj68i")
+
+[node name="ColorRect" type="ColorRect" parent="Drawer/Node2D"]
+self_modulate = Color(1, 1, 1, 0)
+visibility_layer = 2
+z_index = -2
+offset_top = 348.0
+offset_right = 300.0
+offset_bottom = 644.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Drawer/Node2D/ColorRect"]
+z_index = -1
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("7_cykt2")
+centered = false
+
+[node name="Timer" type="Timer" parent="Drawer/Node2D"]
+wait_time = 0.513
+one_shot = true
 
 [node name="SpawnManager" parent="." instance=ExtResource("2_ea76x")]
 friendlySpawnPos = Vector2(100, 100)
