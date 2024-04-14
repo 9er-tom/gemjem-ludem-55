@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/ui/QuitButton.gd" id="3_ewlww"]
 [ext_resource type="AudioStream" uid="uid://dd3bxy1lvfhlt" path="res://assets/audio/main_loop/Gamejam_Loop_6.wav" id="3_fr2bv"]
 [ext_resource type="Script" path="res://scripts/ui/VolumeSlider.gd" id="3_nlu0f"]
-[ext_resource type="Texture2D" uid="uid://rugltgxmkpte" path="res://assets/img/Title-screen.jpg" id="6_byh4n"]
+[ext_resource type="Texture2D" uid="uid://nxxv6fr31psj" path="res://assets/img/Title-screen.png" id="6_7dllb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cotig"]
 font = ExtResource("2_hmodl")
@@ -130,4 +130,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("6_byh4n")
+texture = ExtResource("6_7dllb")
