@@ -10,6 +10,7 @@ signal entity_spawned
 
 @export var enemySpawnPosX: int = 1200
 @onready var timer: Timer = $Timer
+@onready var resources: ResourceManagement = $"/root/main/HUD/ResourceBar"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,21 +28,22 @@ func _process(delta: float) -> void:
 
 #todo connect signal to _on_spawn_entity
 
-func spawn_entity(entity: PackedScene, spawnPos = null) -> void:
+func spawn_entity(entity: PackedScene, spawnPos = null):
 	var ent: Node2D = entity.instantiate()
 	if ent.is_in_group("Enemy"):
 		ent.position = spawnPos if spawnPos else enemySpawnPos
+		ent.get_node("ElementalAffinityComponent").local_element = randi_range(0,4) # randomizes element
+		ent.scale *= randf_range(0.5, 3) 
 		$Enemies.add_child(ent)
 		print("enemy")
 
 	elif ent.is_in_group("Friendly"):
-		ent.position = spawnPos if spawnPos else friendlySpawnPos
-		$Friendlies.add_child(ent)
-		print("friendly")
-
+		if resources.spend_resource(ent.get_node("StatBlockComponent").spawn_cost):
+			ent.position = spawnPos if spawnPos else friendlySpawnPos
+			$Friendlies.add_child(ent)
+			print("friendly")
 	else:
 		print("nothing")
-		return
 		
 func _on_timeout():
 	var enemySpawnPosY: int = randi_range(0, get_viewport_rect().size.y)

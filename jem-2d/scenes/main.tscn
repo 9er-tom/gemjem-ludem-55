@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=19 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
@@ -9,7 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://0nqdh074r6o0" path="res://assets/img/env/barrier/Sprite-0002.png" id="7_fagwv"]
 [ext_resource type="Texture2D" uid="uid://but7dqx4gnvy2" path="res://assets/img/ben_healthbar/under.png" id="8_0xpqf"]
 [ext_resource type="Texture2D" uid="uid://boh2e10fq4hx7" path="res://assets/img/ben_healthbar/progress.png" id="9_6k5oh"]
-[ext_resource type="Script" path="res://scripts/BarrierHealth.gd" id="10_saxeg"]
+[ext_resource type="Script" path="res://scripts/ui/BarrierHealth.gd" id="10_saxeg"]
+[ext_resource type="Texture2D" uid="uid://bc3u604libdwo" path="res://assets/img/resource_bar/bg.png" id="11_p4l1p"]
+[ext_resource type="Texture2D" uid="uid://b6fvp58c46ikp" path="res://assets/img/resource_bar/fg.png" id="12_p7wur"]
+[ext_resource type="Texture2D" uid="uid://l2f7lky2mxxl" path="res://assets/img/resource_bar/fill.png" id="13_hj5iv"]
+[ext_resource type="Script" path="res://scripts/ui/ResourceManagement.gd" id="14_62vo5"]
+[ext_resource type="Script" path="res://scripts/ui/ResourceText.gd" id="15_qu28h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
 size = Vector2(116, 680)
@@ -20,6 +25,9 @@ font_color = Color(0.686275, 0, 0, 1)
 shadow_size = 20
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(-5, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bqjbm"]
+font_size = 40
 
 [node name="main" type="Node"]
 
@@ -128,3 +136,41 @@ u lost :("
 label_settings = SubResource("LabelSettings_1ql0v")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ResourceBar" type="TextureProgressBar" parent="HUD"]
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -158.0
+offset_top = 12.0
+offset_right = -24.0
+offset_bottom = 146.0
+grow_horizontal = 0
+value = 50.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("11_p4l1p")
+texture_over = ExtResource("12_p7wur")
+texture_progress = ExtResource("13_hj5iv")
+script = ExtResource("14_62vo5")
+
+[node name="value" type="Label" parent="HUD/ResourceBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -24.0
+offset_right = 20.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50
+"
+label_settings = SubResource("LabelSettings_bqjbm")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("15_qu28h")
