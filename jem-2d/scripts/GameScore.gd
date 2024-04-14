@@ -3,6 +3,9 @@ class_name GameScore extends RichTextLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	text= text.c_escape()
+	text = text.replace("\\r\\n", "\n")
+	text = text.c_unescape()
 	pass # Replace with function body.
 
 

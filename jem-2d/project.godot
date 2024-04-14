@@ -23,6 +23,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Jem-2d"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/coi_serviceworker/plugin.cfg")
+
 [input]
 
 click={
