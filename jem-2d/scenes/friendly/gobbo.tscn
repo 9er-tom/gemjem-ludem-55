@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://scripts/components/StatBlockComponent.gd" id="8_txv7w"]
 [ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="9_a1g18"]
 [ext_resource type="PackedScene" path="res://scenes/friendly/friend_sprite.tscn" id="9_psm2r"]
+
 [ext_resource type="SpriteFrames" path="res://assets/spriteframes/friend1.tres" id="10_8v4d4"]
+
 [ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="10_bepbq"]
 [ext_resource type="AudioStream" uid="uid://i80o3vwohyty" path="res://assets/sounds/enemy_stomps.wav" id="11_4ey5u"]
 [ext_resource type="AudioStream" uid="uid://ddq87hw3xt01x" path="res://assets/sounds/attack.wav" id="12_pt6es"]

@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bnolfjclqdb77" path="res://assets/sounds/Klick01_GameJam.wav" id="4_4vtsx"]
 [ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
 [ext_resource type="PackedScene" uid="uid://cxa5p0was128e" path="res://scenes/enemy/knight.tscn" id="4_48i4r"]
-[ext_resource type="PackedScene" uid="uid://ctkgs5hp7riqn" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
+[ext_resource type="PackedScene" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
 [ext_resource type="Script" path="res://scripts/Deadzone.gd" id="5_e015q"]
 [ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
 [ext_resource type="Texture2D" uid="uid://bttv7uqufdhfj" path="res://assets/img/env/barrier/Sprite-0003.png" id="6_mw8eh"]

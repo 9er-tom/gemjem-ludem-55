@@ -1,6 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://cxa5p0was128e"]
 
+
 [ext_resource type="SpriteFrames" uid="uid://pgt18xwaeoi" path="res://assets/spriteframes/enemy.tres" id="2_tefx3"]
+
 [ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://scenes/health.tscn" id="3_7maye"]
 [ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="4_q6cwk"]
 [ext_resource type="Script" path="res://scripts/components/AnimationStateComponent.gd" id="5_2b3mr"]
@@ -40,7 +42,7 @@ offset_left = -35.3333
 offset_top = -73.3333
 offset_right = 28.6667
 offset_bottom = -65.3333
-health_per_inch = 2
+health_per_inch = 4
 
 [node name="KillComponent" type="Node2D" parent="."]
 script = ExtResource("4_q6cwk")
