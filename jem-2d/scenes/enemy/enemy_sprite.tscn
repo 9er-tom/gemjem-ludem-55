@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://2k2wfvxuwyqc"]
+[gd_scene load_steps=2 format=3 uid="uid://di21qatgjxa18"]
 
 [ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_wvrkx"]
 
@@ -7,5 +7,5 @@ z_index = 2
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("1_wvrkx")
-animation = &"idle_1"
+animation = &"attack"
 autoplay = "idle_1"

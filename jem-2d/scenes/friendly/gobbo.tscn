@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://scripts/components/ElementalAffinityComponent.gd" id="8_hvprk"]
 [ext_resource type="Script" path="res://scripts/components/StatBlockComponent.gd" id="8_txv7w"]
 [ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="9_a1g18"]
-[ext_resource type="PackedScene" uid="uid://chcovmxjskohn" path="res://scenes/friendly/friend_sprite.tscn" id="9_psm2r"]
-[ext_resource type="SpriteFrames" uid="uid://cl4bafqaarsgj" path="res://assets/spriteframes/friend1.tres" id="10_8v4d4"]
+[ext_resource type="PackedScene" path="res://scenes/friendly/friend_sprite.tscn" id="9_psm2r"]
+[ext_resource type="SpriteFrames" uid="uid://dqo1e6y3rkh1k" path="res://assets/spriteframes/friend1.tres" id="10_8v4d4"]
 [ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="10_bepbq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4n8i"]

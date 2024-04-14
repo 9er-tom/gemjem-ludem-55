@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cxa5p0was128e"]
 
-[ext_resource type="SpriteFrames" uid="uid://dxrmvyhlc3iin" path="res://assets/spriteframes/enemy.tres" id="2_tefx3"]
+[ext_resource type="SpriteFrames" uid="uid://b65dejxki08mg" path="res://assets/spriteframes/enemy.tres" id="2_tefx3"]
 [ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://scenes/health.tscn" id="3_7maye"]
 [ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="4_q6cwk"]
 [ext_resource type="Script" path="res://scripts/components/AnimationStateComponent.gd" id="5_2b3mr"]
@@ -19,12 +19,10 @@ height = 52.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
 texture_filter = 1
-
 scale = Vector2(3, 3)
-sprite_frames = ExtResource("1_7ju85")
-animation = &"walk"
+sprite_frames = ExtResource("2_tefx3")
+animation = &"attack_1"
 autoplay = "idle"
-frame_progress = 0.426273
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kejoo")
@@ -39,7 +37,7 @@ offset_left = -35.3333
 offset_top = -73.3333
 offset_right = 28.6667
 offset_bottom = -65.3333
-health_per_inch = 2
+health_per_inch = 4
 
 [node name="KillComponent" type="Node2D" parent="."]
 script = ExtResource("4_q6cwk")
