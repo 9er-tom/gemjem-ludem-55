@@ -3,7 +3,7 @@ class_name KillComponent extends Node2D
 @onready var body: CharacterBody2D = get_parent()
 @onready var animState: AnimationStateComponent = $"../AnimationStateComponent"
 @onready var resourceManagement: ResourceManagement = $"/root/main/HUD/ResourceBar"
-@onready var gameScore: GameScore = $"/root/main/HUD/GameScore"
+#@onready var gameScore: GameScore = $"/root/main/HUD/GameScore"
 @onready var statBlock: StatBlockComponent = $"../StatBlockComponent"
 	
 func kill():
