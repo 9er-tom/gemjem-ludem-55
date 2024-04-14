@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://f3cbh0t6wx14" path="res://scenes/friendly/gobbo.tscn" id="3_p7yfg"]
 [ext_resource type="Script" path="res://scripts/drawable.gd" id="4_6begs"]
 [ext_resource type="PackedScene" uid="uid://cxa5p0was128e" path="res://scenes/enemy/knight.tscn" id="4_48i4r"]
-[ext_resource type="PackedScene" uid="uid://ctkgs5hp7riqn" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
+[ext_resource type="PackedScene" path="res://scenes/drawnSymbol.tscn" id="5_4o41v"]
 [ext_resource type="Script" path="res://scripts/Deadzone.gd" id="5_e015q"]
 [ext_resource type="Script" path="res://imageRecTestingGround/imageRec.gd" id="5_fj68i"]
 [ext_resource type="Texture2D" uid="uid://bttv7uqufdhfj" path="res://assets/img/env/barrier/Sprite-0003.png" id="6_mw8eh"]
@@ -25,7 +25,7 @@
 [ext_resource type="Script" path="res://scripts/MovableSpawner.gd" id="22_htrps"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
-size = Vector2(116, 680)
+size = Vector2(116, 408)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1ql0v"]
 font_size = 100
@@ -58,7 +58,7 @@ position = Vector2(0, -168)
 script = ExtResource("5_e015q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
-position = Vector2(48, 330)
+position = Vector2(48, 373)
 shape = SubResource("RectangleShape2D_fxxxx")
 
 [node name="DeadzoneGizmo" type="Polygon2D" parent="Deadzone"]
