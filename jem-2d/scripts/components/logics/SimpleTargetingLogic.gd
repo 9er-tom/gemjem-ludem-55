@@ -21,6 +21,31 @@ func _ready() -> void:
 	targetingGizmo.points[1].x = statBlock.attackRange
 	sprite.animation_finished.connect(_on_animation_finished)
 	sprite.set_flip_h(defaultDirection == Vector2.LEFT)
+	if body.is_in_group("Friendly"):
+		match elementalAffinity.local_element:
+			elementalAffinity.ElementType.NECRO:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/friend1.tres")
+			elementalAffinity.ElementType.HOLY:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/friend2.tres")
+			elementalAffinity.ElementType.FIRE:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/friend3.tres")
+			elementalAffinity.ElementType.WATER:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/friend4.tres")
+			elementalAffinity.ElementType.LIFE:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/friend5.tres")
+	if body.is_in_group("Enemy"):
+		match elementalAffinity.local_element:
+			elementalAffinity.ElementType.NECRO:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy1.tres")
+			elementalAffinity.ElementType.HOLY:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy2.tres")
+			elementalAffinity.ElementType.FIRE:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy3.tres")
+			elementalAffinity.ElementType.WATER:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy4.tres")
+			elementalAffinity.ElementType.LIFE:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy5.tres")
+	
 
 
 func _process(_delta: float) -> void:

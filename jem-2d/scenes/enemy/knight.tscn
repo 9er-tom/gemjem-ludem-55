@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://cxa5p0was128e"]
 
-[ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_7ju85"]
-[ext_resource type="PackedScene" path="res://scenes/health.tscn" id="3_7maye"]
+[ext_resource type="SpriteFrames" uid="uid://dxrmvyhlc3iin" path="res://assets/spriteframes/enemy.tres" id="2_tefx3"]
+[ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://scenes/health.tscn" id="3_7maye"]
 [ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="4_q6cwk"]
 [ext_resource type="Script" path="res://scripts/components/AnimationStateComponent.gd" id="5_2b3mr"]
-[ext_resource type="PackedScene" path="res://scenes/entity_detection_component.tscn" id="6_bqr1m"]
+[ext_resource type="PackedScene" uid="uid://bgvgaephormhj" path="res://scenes/entity_detection_component.tscn" id="6_bqr1m"]
 [ext_resource type="Script" path="res://scripts/components/StatBlockComponent.gd" id="6_isrlf"]
 [ext_resource type="Script" path="res://scripts/components/logics/SimpleTargetingLogic.gd" id="7_vhglf"]
 [ext_resource type="Script" path="res://scripts/components/ElementalAffinityComponent.gd" id="8_1yvgy"]
@@ -19,10 +19,10 @@ height = 52.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
 texture_filter = 1
-sprite_frames = ExtResource("1_7ju85")
-animation = &"walk"
-autoplay = "idle"
-frame_progress = 0.359235
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("2_tefx3")
+animation = &"idle_5"
+autoplay = "idle_1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kejoo")

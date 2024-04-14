@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://2k2wfvxuwyqc"]
+
+[ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_wvrkx"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+z_index = 2
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("1_wvrkx")
+animation = &"idle_1"
+autoplay = "idle_1"
