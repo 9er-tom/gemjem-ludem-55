@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddahfodd8bt8i"]
+
+[ext_resource type="SpriteFrames" uid="uid://dl8ajg3obksrr" path="res://assets/spriteframes/popcat.tres" id="1_j6b23"]
+[ext_resource type="Script" path="res://scripts/enemy_logic.gd" id="2_tvwom"]
+[ext_resource type="PackedScene" uid="uid://wg3uykey4c0u" path="res://scenes/health.tscn" id="3_721a5"]
+[ext_resource type="Script" path="res://scripts/components/KillComponent.gd" id="5_vo827"]
+[ext_resource type="PackedScene" uid="uid://bgvgaephormhj" path="res://scenes/entity_detection_component.tscn" id="6_0s7is"]
+[ext_resource type="Script" path="res://scripts/components/AnimationStateComponent.gd" id="6_hfvhp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kejoo"]
+radius = 215.0
+height = 450.0
+
+[node name="enemy_body" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_j6b23")
+animation = &"attack"
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(55, 240)
+shape = SubResource("CapsuleShape2D_kejoo")
+
+[node name="Enemy" type="Node2D" parent="."]
+script = ExtResource("2_tvwom")
+attack_range = 200
+
+[node name="TargetingGizmo" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 0, 100, 0)
+default_color = Color(1, 0, 0, 1)
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_721a5")]
+offset_left = -320.0
+offset_top = -600.0
+offset_right = -256.0
+offset_bottom = -592.0
+scale = Vector2(10, 10)
+
+[node name="KillComponent" type="Node2D" parent="."]
+script = ExtResource("5_vo827")
+
+[node name="AnimationStateComponent" type="Node2D" parent="."]
+script = ExtResource("6_hfvhp")
+
+[node name="EntityDetectionComponent" parent="." instance=ExtResource("6_0s7is")]
+position = Vector2(20, -5)
+scale = Vector2(5, 2)
+detectionTarget = "Friendly"
