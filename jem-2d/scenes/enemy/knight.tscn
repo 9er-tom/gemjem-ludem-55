@@ -22,7 +22,7 @@ texture_filter = 1
 sprite_frames = ExtResource("1_7ju85")
 animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.0453976
+frame_progress = 0.359235
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kejoo")
