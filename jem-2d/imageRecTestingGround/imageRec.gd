@@ -44,7 +44,7 @@ func compare(pattern, drawing):
 			var patternPixelColor = pattern.get_pixel(x, y)
 			var drawingPixelColor = drawing.get_pixel(x, y)
 			#print(drawingPixelColor)
-			score = score + (patternPixelColor.a * drawingPixelColor.a)
+			score = score + (patternPixelColor.a * drawingPixelColor.a) - ((1 - patternPixelColor.a) * drawingPixelColor.a)
 	return score
 
 
@@ -67,7 +67,7 @@ func scoreImage(img):
 
 func get_key_of_largest_value(input_dict):
 	var max_key = null
-	var max_value = 120  # Minimal needed threshold
+	var max_value = 90  # Minimal needed threshold
 
 	for key in input_dict.keys():
 		var value = input_dict[key]
