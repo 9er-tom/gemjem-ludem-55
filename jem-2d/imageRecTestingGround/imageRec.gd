@@ -47,7 +47,7 @@ func compare(pattern, drawing, maxPoints):
 			#print(drawingPixelColor)
 			score = score + (patternPixelColor.a * drawingPixelColor.a) - ((1 - patternPixelColor.a) * (drawingPixelColor.a / 2))
 	
-	print(pattern, " ", score , "/", maxPoints)
+	# print(pattern, " ", score , "/", maxPoints)
 	return (clamp(score, 0, maxPoints)/maxPoints) * 100
 
 
@@ -64,7 +64,7 @@ func scoreImage(img):
 	var maxKey = get_key_of_largest_value(dict)
 	print("Score dict: ", dict)
 	if maxKey != null:
-		print(maxKey, " ", dict[maxKey])
+		# print(maxKey, " ", dict[maxKey])
 		drawn_sigil.emit(maxKey)
 		drawn_sigil_percent.emit(dict[maxKey])
 

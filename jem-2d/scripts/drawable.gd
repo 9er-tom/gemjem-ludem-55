@@ -133,7 +133,7 @@ func draw_line_on_img(img, p0, p1, color):
 		if i % 3 == 0:
 			draw_circle_on_img(img, x0, y0, 5, color)
 		i += 1
-		if x0 == x1 and y0 == y1:
+		if (x0 == x1 and y0 == y1) or i > 10:
 			break
 		var e2 = 2 * err
 		if e2 >= dy:  # e_xy + e_x > 0
