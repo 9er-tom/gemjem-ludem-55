@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=27 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scripts/ui/ResourceManagement.gd" id="14_62vo5"]
 [ext_resource type="Script" path="res://scripts/ui/ResourceText.gd" id="15_qu28h"]
 [ext_resource type="Texture2D" uid="uid://cg46e3nkjxwxo" path="res://assets/img/ui_bar/pentagram.png" id="19_c5sgc"]
+[ext_resource type="Texture2D" uid="uid://2b82hq5elv4r" path="res://assets/img/background.png" id="21_etwka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxxx"]
 size = Vector2(116, 680)
@@ -229,6 +230,14 @@ format = 2
 layer_0/tile_data = PackedInt32Array(2162695, 0, 0, 2162710, 65536, 0, 2162725, 65536, 0, 2162740, 65536, 0, 2162755, 131072, 0)
 
 [node name="TileMap" parent="." instance=ExtResource("1_t682u")]
+visible = false
 z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -13
+texture_filter = 1
+position = Vector2(576, 238.5)
+scale = Vector2(5.76, 5.39333)
+texture = ExtResource("21_etwka")
 
 [node name="Node2D" type="Node2D" parent="."]
