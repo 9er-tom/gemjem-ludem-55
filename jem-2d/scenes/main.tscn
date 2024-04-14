@@ -218,10 +218,10 @@ self_modulate = Color(1, 1, 1, 0)
 visibility_layer = 2
 z_index = -2
 texture_filter = 1
-offset_left = 442.0
-offset_top = 410.0
-offset_right = 742.0
-offset_bottom = 706.0
+offset_left = 448.0
+offset_top = 411.0
+offset_right = 748.0
+offset_bottom = 707.0
 scale = Vector2(0.793094, 0.793094)
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -279,3 +279,5 @@ script = ExtResource("22_htrps")
 process_mode = 3
 stream = ExtResource("24_uuueb")
 autoplay = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]

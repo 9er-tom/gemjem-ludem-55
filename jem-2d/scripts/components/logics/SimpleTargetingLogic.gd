@@ -27,9 +27,9 @@ func _ready() -> void:
 		match elementalAffinity.local_element:
 			elementalAffinity.ElementType.NECRO:
 				sprite.sprite_frames =  preload("res://assets/spriteframes/friend1.tres")
-			elementalAffinity.ElementType.HOLY:
-				sprite.sprite_frames =  preload("res://assets/spriteframes/friend2.tres")
 			elementalAffinity.ElementType.FIRE:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/friend2.tres")
+			elementalAffinity.ElementType.HOLY:
 				sprite.sprite_frames =  preload("res://assets/spriteframes/friend3.tres")
 			elementalAffinity.ElementType.WATER:
 				sprite.sprite_frames =  preload("res://assets/spriteframes/friend4.tres")
@@ -39,9 +39,9 @@ func _ready() -> void:
 		match elementalAffinity.local_element:
 			elementalAffinity.ElementType.NECRO:
 				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy1.tres")
-			elementalAffinity.ElementType.HOLY:
-				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy2.tres")
 			elementalAffinity.ElementType.FIRE:
+				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy2.tres")
+			elementalAffinity.ElementType.HOLY:
 				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy3.tres")
 			elementalAffinity.ElementType.WATER:
 				sprite.sprite_frames =  preload("res://assets/spriteframes/enemy4.tres")

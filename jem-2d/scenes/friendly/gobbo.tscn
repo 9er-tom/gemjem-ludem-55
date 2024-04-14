@@ -55,14 +55,15 @@ script = ExtResource("8_hvprk")
 local_element = 4
 
 [node name="ElementIndicator" type="Sprite2D" parent="ElementalAffinityComponent"]
-position = Vector2(0, 22)
-scale = Vector2(0.15, 0.15)
+position = Vector2(0, 19)
+scale = Vector2(0.065, 0.065)
 texture = ExtResource("9_a1g18")
 
 [node name="KillComponent" type="Node2D" parent="."]
 script = ExtResource("10_bepbq")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("9_psm2r")]
+scale = Vector2(3.5, 3.5)
 sprite_frames = ExtResource("10_8v4d4")
 animation = &"attack"
 autoplay = ""
