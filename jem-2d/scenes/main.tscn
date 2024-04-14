@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=34 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://dn4c4s7yqv1s5" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
@@ -213,7 +213,7 @@ lastDrawnSymbol = ExtResource("5_4o41v")
 
 [node name="PatternPercent" type="Node2D" parent="HUD/Drawer/Node2D"]
 z_index = 10
-position = Vector2(113, 438)
+position = Vector2(555, 466)
 script = ExtResource("24_wavty")
 
 [node name="ImageScorer" type="Node" parent="HUD/Drawer/Node2D"]
