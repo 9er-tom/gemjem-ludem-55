@@ -1,5 +1,7 @@
 class_name ImageScorer extends Node
 
+signal drawn_sigil
+
 var recPatternImage = Image.new()
 var circlePatternImage = Image.new()
 var triagPatternImage = Image.new()
@@ -48,17 +50,18 @@ func compare(pattern, drawing):
 
 func scoreImage(img):
 	var dict = {}
-
-	dict["fire"] = compare(pFire, img)
-	dict["holy"] = compare(pHoly, img)
-	dict["life"] = compare(pLife, img)
-	dict["necro"] = compare(pNecro, img)
-	dict["water"] = compare(pWater, img)
+	
+	dict[ElementalAffinityComponent.ElementType.FIRE] = compare(pFire, img)
+	dict[ElementalAffinityComponent.ElementType.HOLY] = compare(pHoly, img)
+	dict[ElementalAffinityComponent.ElementType.LIFE] = compare(pLife, img)
+	dict[ElementalAffinityComponent.ElementType.NECRO] = compare(pNecro, img)
+	dict[ElementalAffinityComponent.ElementType.WATER] = compare(pWater, img)
 	
 	#get Results
 	var maxKey = get_key_of_largest_value(dict)
 	if maxKey:
 		print(maxKey, " ", dict[maxKey])
+		drawn_sigil.emit(maxKey)
 
 
 func get_key_of_largest_value(input_dict):
