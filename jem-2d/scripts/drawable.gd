@@ -1,5 +1,12 @@
 extends Node2D
 
+var pFire = Image.new()
+var pHoly = Image.new()
+var pLife = Image.new()
+var pNecro = Image.new()
+var pWater = Image.new()
+
+
 @onready var imgScorer: ImageScorer = $ImageScorer
 @onready var rect : ColorRect = $ColorRect
 @onready var timerComponent: Timer = $Timer
@@ -12,6 +19,12 @@ var prevSymbols : Array = [[[]]]
 var tex = ImageTexture.new()
 
 func _ready():
+	pFire.load("res://imageRecTestingGround/Patterns/pFire.png")
+	pHoly.load("res://imageRecTestingGround/Patterns/pHoly.png")
+	pLife.load("res://imageRecTestingGround/Patterns/pLife.png")
+	pNecro.load("res://imageRecTestingGround/Patterns/pNecro.png")
+	pWater.load("res://imageRecTestingGround/Patterns/pWater.png")
+
 	timerComponent.timeout.connect(activateSymbol)
 	limitRect = rect.get_rect()
 	print(limitRect)
@@ -45,30 +58,40 @@ func _process(_delta):
 		if lines[-1].size() != 0:
 			lines.append([])
 
+	if Input.is_action_just_pressed("Number1"):
+		createEffect(pFire, 0.95)
+	if Input.is_action_just_pressed("Number2"):
+		createEffect(pHoly, 0.95)
+	if Input.is_action_just_pressed("Number3"):
+		createEffect(pNecro, 0.95)
+	if Input.is_action_just_pressed("Number4"):
+		createEffect(pLife, 0.95)
+	if Input.is_action_just_pressed("Number5"):
+		createEffect(pWater, 0.95)
 
 func checkDist(p1, p2):
 	return false if abs(p1.x - p2.x) < 5 && abs(p1.y - p2.y) < 5 else true
 
 func activateSymbol(): 
-	save_picture(lines)
-	prevSymbols.push_front(lines)
-	if prevSymbols.size() > 10:
-		prevSymbols.pop_back()
-	lines = [[]]
-	queue_redraw()
+	if lines.size() > 0 && lines[0].size() > 0:
+		save_picture(lines)
+		prevSymbols.push_front(lines)
+		if prevSymbols.size() > 10:
+			prevSymbols.pop_back()
+		lines = [[]]
+		queue_redraw()
 
 
 func save_picture(lastSymbol):
 	var img = createSymbolImage(lastSymbol, Color.RED)
-	#img.save_png("F:\\Godot Projects\\LD\\gemjem-ludem-55-1\\jem-2d\\scripts\\test.png")
 
 	createEffect(img)
 	imgScorer.scoreImage(img)
 
-func createEffect(img):
+func createEffect(img, scaler = 1.):
 	tex = ImageTexture.create_from_image(img)
 	var newObject = lastDrawnSymbol.instantiate()
-	
+	newObject.scale = Vector2(scaler, scaler)
 	add_child(newObject)
 	newObject.get_node("TextureRect").texture = tex
 	newObject.position = limitRect.position

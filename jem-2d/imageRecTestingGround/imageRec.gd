@@ -59,14 +59,15 @@ func scoreImage(img):
 	
 	#get Results
 	var maxKey = get_key_of_largest_value(dict)
-	if maxKey:
+
+	if maxKey != null:
 		print(maxKey, " ", dict[maxKey])
 		drawn_sigil.emit(maxKey)
 
 
 func get_key_of_largest_value(input_dict):
 	var max_key = null
-	var max_value = 100  # Minimal needed threshold
+	var max_value = 120  # Minimal needed threshold
 
 	for key in input_dict.keys():
 		var value = input_dict[key]

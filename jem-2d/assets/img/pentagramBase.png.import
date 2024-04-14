@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://38ff5dgndnlq"
-path="res://.godot/imported/pentagramt.png-19f64b8b74d121562c99e35af75f28d1.ctex"
+uid="uid://bdmquran0bkse"
+path="res://.godot/imported/pentagramBase.png-4a0e908019d42f4d8951b230b429252d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/pentagramt.png"
-dest_files=["res://.godot/imported/pentagramt.png-19f64b8b74d121562c99e35af75f28d1.ctex"]
+source_file="res://assets/img/pentagramBase.png"
+dest_files=["res://.godot/imported/pentagramBase.png-4a0e908019d42f4d8951b230b429252d.ctex"]
 
 [params]
 
