@@ -1,6 +1,7 @@
 class_name ImageScorer extends Node
 
 signal drawn_sigil
+signal drawn_sigil_percent
 
 var recPatternImage = Image.new()
 var circlePatternImage = Image.new()
@@ -14,7 +15,7 @@ var pWater = Image.new()
 
 
 var drawingImage = Image.new()
-
+ 
 func _ready():
 	#recPatternImage.load("res://imageRecTestingGround/GameJamPatternRec.png")
 	#circlePatternImage.load("res://imageRecTestingGround/PatternCircle.png")
@@ -35,7 +36,7 @@ func sort_function(a, b):
 	return a < b  # Sorting by value
 
 
-func compare(pattern, drawing):
+func compare(pattern, drawing, maxPoints):
 	pattern.resize(50, 50)
 	drawing.resize(50, 50)
 	var score = 0
@@ -44,30 +45,33 @@ func compare(pattern, drawing):
 			var patternPixelColor = pattern.get_pixel(x, y)
 			var drawingPixelColor = drawing.get_pixel(x, y)
 			#print(drawingPixelColor)
-			score = score + (patternPixelColor.a * drawingPixelColor.a) - ((1 - patternPixelColor.a) * drawingPixelColor.a)
-	return score
+			score = score + (patternPixelColor.a * drawingPixelColor.a) - ((1 - patternPixelColor.a) * (drawingPixelColor.a / 2))
+	
+	print(pattern, " ", score , "/", maxPoints)
+	return (clamp(score, 0, maxPoints)/maxPoints) * 100
 
 
 func scoreImage(img):
 	var dict = {}
 	
-	dict[ElementalAffinityComponent.ElementType.FIRE] = compare(pFire, img)
-	dict[ElementalAffinityComponent.ElementType.HOLY] = compare(pHoly, img)
-	dict[ElementalAffinityComponent.ElementType.LIFE] = compare(pLife, img)
-	dict[ElementalAffinityComponent.ElementType.NECRO] = compare(pNecro, img)
-	dict[ElementalAffinityComponent.ElementType.WATER] = compare(pWater, img)
+	dict[ElementalAffinityComponent.ElementType.FIRE] = compare(pFire, img, 135)
+	dict[ElementalAffinityComponent.ElementType.HOLY] = compare(pHoly, img, 120)
+	dict[ElementalAffinityComponent.ElementType.LIFE] = compare(pLife, img, 210)
+	dict[ElementalAffinityComponent.ElementType.NECRO] = compare(pNecro, img, 170)
+	dict[ElementalAffinityComponent.ElementType.WATER] = compare(pWater, img, 180)
 	
 	#get Results
 	var maxKey = get_key_of_largest_value(dict)
-
+	print("Score dict: ", dict)
 	if maxKey != null:
 		print(maxKey, " ", dict[maxKey])
 		drawn_sigil.emit(maxKey)
+		drawn_sigil_percent.emit(dict[maxKey])
 
 
 func get_key_of_largest_value(input_dict):
 	var max_key = null
-	var max_value = 90  # Minimal needed threshold
+	var max_value = 40  # Minimal needed threshold
 
 	for key in input_dict.keys():
 		var value = input_dict[key]
