@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://m8o0rqk2ru0u"]
+[gd_scene load_steps=30 format=3 uid="uid://m8o0rqk2ru0u"]
 
 [ext_resource type="PackedScene" uid="uid://wvj05l8teigh" path="res://scenes/tile_map.tscn" id="1_t682u"]
 [ext_resource type="PackedScene" uid="uid://hp2cfubpxitn" path="res://scenes/spawn_manager.tscn" id="2_ea76x"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scripts/ui/ResourceText.gd" id="15_qu28h"]
 [ext_resource type="Texture2D" uid="uid://bdmquran0bkse" path="res://assets/img/pentagramBase.png" id="18_53f0t"]
 [ext_resource type="Texture2D" uid="uid://cg46e3nkjxwxo" path="res://assets/img/ui_bar/pentagram.png" id="19_c5sgc"]
+[ext_resource type="AudioStream" uid="uid://nsvnrfh0nb3w" path="res://assets/sounds/dry_scribble_01.wav" id="19_loalx"]
 [ext_resource type="Script" path="res://scripts/GameScore.gd" id="20_vulhf"]
 [ext_resource type="Texture2D" uid="uid://buru837yustnm" path="res://assets/img/pentagram.png" id="21_ebxab"]
 [ext_resource type="Script" path="res://scripts/MovableSpawner.gd" id="22_htrps"]
@@ -221,6 +222,10 @@ centered = false
 [node name="Timer" type="Timer" parent="HUD/Drawer/Node2D"]
 wait_time = 0.513
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HUD/Drawer/Node2D"]
+stream = ExtResource("19_loalx")
+volume_db = -35.36
 
 [node name="UiBar" type="TileMap" parent="HUD"]
 z_index = -5

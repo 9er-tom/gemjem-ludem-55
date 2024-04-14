@@ -47,6 +47,9 @@ func _process(_delta):
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		timerComponent.start()
 
+		if not $AudioStreamPlayer.is_playing():
+			$AudioStreamPlayer.play()
+
 		var mousePosition = get_viewport().get_mouse_position()
 		if mousePosition.x > limitRect.position.x && mousePosition.x < limitRect.end.x && mousePosition.y > limitRect.position.y && mousePosition.y < limitRect.end.y: 
 
@@ -55,6 +58,7 @@ func _process(_delta):
 				queue_redraw()
 	
 	else:
+		$AudioStreamPlayer.stop()
 		if lines[-1].size() != 0:
 			lines.append([])
 
